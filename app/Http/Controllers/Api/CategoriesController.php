@@ -22,7 +22,7 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'required|image',
-            'pdf_file' => 'nullable|mimes:pdf|max:10240', // PDF بحد أقصى 10 ميجا
+            'pdf_file' => 'nullable|mimes:pdf', 
         ]);
 
         if ($validator->fails()) {

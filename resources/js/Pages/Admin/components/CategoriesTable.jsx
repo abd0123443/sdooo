@@ -72,12 +72,14 @@ export default function CategoriesTable() {
         formData.append("name", newCategory.name);
         formData.append("description", newCategory.description);
         formData.append("image", newCategory.image);
-        if (newCategory.pdf_file) formData.append("pdf_file", newCategory.pdf_file);
-        closeModal();
+        if (newCategory.pdf_file) {
+            formData.append("pdf_file", newCategory.pdf_file);
+        }
         try {
             await axios.post(`${app_url}/api/categories/store`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+            closeModal();
             showAllCategories();
             setNewCategory({ name: "", image: "", description: "", pdf_file: null });
         } catch (error) {
