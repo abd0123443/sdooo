@@ -71,8 +71,10 @@ export default function CategoriesTable() {
         const formData = new FormData();
         formData.append("name", newCategory.name);
         formData.append("description", newCategory.description);
-        formData.append("image", newCategory.image);
-        if (newCategory.pdf_file) {
+        if (newCategory.image instanceof File) {
+            formData.append("image", newCategory.image);
+        }
+        if (newCategory.pdf_file instanceof File) {
             formData.append("pdf_file", newCategory.pdf_file);
         }
         try {

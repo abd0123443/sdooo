@@ -71,8 +71,12 @@ export default function CategoriesIndex() {
         const formData = new FormData();
         formData.append("name", newCategory.name);
         formData.append("description", newCategory.description);
-        formData.append("image", newCategory.image);
-        if (newCategory.pdf_file) formData.append("pdf_file", newCategory.pdf_file);
+        if (newCategory.image instanceof File) {
+            formData.append("image", newCategory.image);
+        }
+        if (newCategory.pdf_file instanceof File) {
+            formData.append("pdf_file", newCategory.pdf_file);
+        }
         try {
             await axios.post(`${app_url}/api/categories/store`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
@@ -98,13 +102,13 @@ export default function CategoriesIndex() {
         if (selectedCategory.pdf_file instanceof File) {
             formData.append("pdf_file", selectedCategory.pdf_file);
         }
-        closeModal();
         try {
             await axios.post(
                 `${app_url}/api/categories/update/${selectedCategory.id}`,
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
+            closeModal();
             showAllCategories();
             setSelectedCategory({ id: null, name: "", description: "", image: "", pdf_file: null });
         } catch (error) {
