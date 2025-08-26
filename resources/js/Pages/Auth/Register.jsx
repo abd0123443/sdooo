@@ -21,10 +21,10 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <h2 className="text-2xl font-bold mb-6">إنشاء حساب</h2>
+            <h2 className="text-2xl font-bold mb-6">Register</h2>
             <form onSubmit={submit} className="space-y-4">
                 <div>
-                    <InputLabel htmlFor="name" value="الاسم" />
+                    <InputLabel htmlFor="name" value="Name" />
                     <TextInput
                         id="name"
                         value={data.name}
@@ -37,7 +37,7 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="email" value="البريد الإلكتروني" />
+                    <InputLabel htmlFor="email" value="Email" />
                     <TextInput
                         id="email"
                         type="email"
@@ -50,7 +50,7 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password" value="كلمة المرور" />
+                    <InputLabel htmlFor="password" value="Password" />
                     <TextInput
                         id="password"
                         type="password"
@@ -64,7 +64,7 @@ export default function Register() {
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password_confirmation" value="تأكيد كلمة المرور" />
+                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
                     <TextInput
                         id="password_confirmation"
                         type="password"
@@ -81,10 +81,10 @@ export default function Register() {
                         href="/login"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
-                        لديك حساب بالفعل؟
+                        Already registered?
                     </Link>
 
-                    <PrimaryButton disabled={processing}>إنشاء حساب</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Register</PrimaryButton>
                 </div>
             </form>
         </GuestLayout>
