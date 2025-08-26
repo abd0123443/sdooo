@@ -1,144 +1,92 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { useContext } from 'react';
-import { ThemeContext } from '../../Contexts/ThemeContext';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import React from "react";
+import { Link, useForm } from "@inertiajs/react";
+import GuestLayout from "@/Layouts/GuestLayout";
+import InputLabel from "@/Components/InputLabel";
+import TextInput from "@/Components/TextInput";
+import InputError from "@/Components/InputError";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Register() {
-    const { theme } = useContext(ThemeContext);
-
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
     });
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route('register'), {
-            onFinish: () => reset('password', 'password_confirmation'),
-        });
+        post("/register");
     };
 
     return (
-        <>
-        <Header />
         <GuestLayout>
-            <Head title="Register" />
-
-            <form
-                onSubmit={submit}
-                className={`rounded-xl p-8 shadow-xl transition duration-500 ${
-                    theme === "dark"
-                        ? "bg-gray-800 text-gray-700"
-                        : "bg-white text-gray-800"
-                }`}
-            >
-                <h2 className="text-2xl font-bold mb-6 text-center">Create a New Account</h2>
-
+            <h2 className="text-2xl font-bold mb-6">إنشاء حساب</h2>
+            <form onSubmit={submit} className="space-y-4">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
+                    <InputLabel htmlFor="name" value="الاسم" />
                     <TextInput
                         id="name"
-                        name="name"
                         value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData("name", e.target.value)}
                         required
-                        placeholder="Enter your name"
+                        autoFocus
+                        className="mt-1 block w-full"
                     />
-
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email Address" />
-
+                <div>
+                    <InputLabel htmlFor="email" value="البريد الإلكتروني" />
                     <TextInput
                         id="email"
                         type="email"
-                        name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={(e) => setData("email", e.target.value)}
                         required
-                        placeholder="Enter your email"
+                        className="mt-1 block w-full"
                     />
-
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
+                <div>
+                    <InputLabel htmlFor="password" value="كلمة المرور" />
                     <TextInput
                         id="password"
                         type="password"
-                        name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
+                        onChange={(e) => setData("password", e.target.value)}
                         required
-                        placeholder="Enter your password"
+                        autoComplete="new-password"
+                        className="mt-1 block w-full"
                     />
-
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
+                <div>
+                    <InputLabel htmlFor="password_confirmation" value="تأكيد كلمة المرور" />
                     <TextInput
                         id="password_confirmation"
                         type="password"
-                        name="password_confirmation"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
+                        onChange={(e) => setData("password_confirmation", e.target.value)}
                         required
-                        placeholder="Re-enter your password"
+                        className="mt-1 block w-full"
                     />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
+                <div className="flex items-center justify-between mt-4">
                     <Link
-                        href={route('login')}
-                        className={`text-sm underline focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
-                            theme === "dark"
-                                ? "text-gray-300 hover:text-white"
-                                : "text-gray-600 hover:text-gray-900"
-                        }`}
+                        href="/login"
+                        className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
-                        Already have an account?
+                        لديك حساب بالفعل؟
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
+                    <PrimaryButton disabled={processing}>إنشاء حساب</PrimaryButton>
                 </div>
             </form>
         </GuestLayout>
-        <Footer />
-        </>
     );
 }
