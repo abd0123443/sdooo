@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Category;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -55,7 +56,7 @@ Route::middleware('admin')->group(function () {
 
 
 Route::get('/', function () {
-    return Inertia::render('Homepage');
+    return Inertia::render('Home');
 });
 
 Route::get('/about', function () {
@@ -66,14 +67,11 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
 
-Route::get('/services', function () {
-    return Inertia::render('Services');
+Route::get('/portfolio', function () {
+    $categories = Category::with('products')->get();
+    return Inertia::render('Portfolio', [
+        'categories' => $categories,
+    ]);
 });
-
-Route::get('/products', function () {
-    return Inertia::render('ProductGallery');
-});
-
-
 
 require __DIR__ . '/auth.php';

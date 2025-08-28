@@ -17,11 +17,12 @@ export default function AdminLayout({ children, hideLayout = false }) {
     return (
         <>
         <Head title="dashbord" />
-        <div  className="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div  className="min-h-screen  bg-gray-100 dark:bg-gray-900">
             <Sidebar isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
-            <div className={`transition-all duration-300 sm:mr-${sidebarIsOpen ? '56' : '20'}`}>
-                <Header isOpen={sidebarIsOpen} />
-                <main className="p-6 pt-24 ml-16">
+            {/* The main content area, including header and actual content */}
+            <div className="flex flex-col flex-1">
+                <Header isOpen={sidebarIsOpen} setIsOpen={setSidebarIsOpen} />
+                <main className={`p-6 ml-16 md-0 pt-24 transition-all duration-300 sm:ml-${sidebarIsOpen ? '56' : '20'}`}>
                     {children}
                 </main>
             </div>

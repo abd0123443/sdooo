@@ -12,7 +12,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::all(['id', 'name', 'description', 'image', 'pdf_file']);
+        $categories = Category::all();
         return response()->json($categories);
     }
 
@@ -22,7 +22,6 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'required|image',
-            'pdf_file' => 'nullable|mimes:pdf', 
         ]);
 
         if ($validator->fails()) {
@@ -36,13 +35,10 @@ class CategoriesController extends Controller
         $imagePath = $request->file('image')->store('categories_images', 'public');
 
 
-        $pdfPath = $request->file('pdf_file') ? $request->file('pdf_file')->store('categories_pdfs', 'public') : null;
-
         $category = Category::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imagePath,
-            'pdf_file' => $pdfPath,
         ]);
 
         return response()->json(['message' => 'Category created successfully', 'data' => $category]);
@@ -54,7 +50,7 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image',
-            'pdf_file' => 'nullable|mimes:pdf',
+
         ]);
 
         if ($validator->fails()) {
@@ -73,12 +69,6 @@ class CategoriesController extends Controller
         }
 
 
-        if ($request->file('pdf_file')) {
-            if ($category->pdf_file && Storage::disk('public')->exists($category->pdf_file)) {
-                Storage::disk('public')->delete($category->pdf_file);
-            }
-            $category->pdf_file = $request->file('pdf_file')->store('categories_pdfs', 'public');
-        }
 
         $category->name = $request->name;
         $category->description = $request->description;
@@ -92,11 +82,6 @@ class CategoriesController extends Controller
 
         if ($category->image && Storage::disk('public')->exists($category->image)) {
             Storage::disk('public')->delete($category->image);
-        }
-
-
-        if ($category->pdf_file && Storage::disk('public')->exists($category->pdf_file)) {
-            Storage::disk('public')->delete($category->pdf_file);
         }
 
         $category->delete();

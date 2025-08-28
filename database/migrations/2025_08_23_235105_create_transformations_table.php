@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('transformations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->text('description')->nullable();
-            $table->string('location')->nullable();
-            $table->string('tag')->nullable();
-            $table->string('image')->nullable();
+            $table->string('work')->nullable();
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ const navItems = [
   { name: 'Dashboard', icon: HomeIcon, path: '/admin' },
   { name: 'Categories', icon: TagIcon, path: '/admin/categories' },
   { name: 'Products', icon: BookOpenIcon, path: '/admin/products' },
-  { name: 'Transformations', icon: ClipboardDocumentListIcon, path: '/admin/transformations' },
+  { name: 'Customer Review', icon: ClipboardDocumentListIcon, path: '/admin/transformations' },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {
@@ -24,9 +24,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   return (
     <div
       className={`fixed top-0 left-0 h-full z-40 flex flex-col
-        bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ${sidebarWidth}`}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+        bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 ${sidebarWidth} ${isOpen ? 'block' : 'hidden sm:block'}`}
     >
       <div
         className={`flex items-center ${isOpen ? 'justify-between' : 'justify-center'}

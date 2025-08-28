@@ -9,7 +9,8 @@ import {
     TrashIcon,
 } from "@heroicons/react/24/outline";
 
-export default function ProductsTable() {
+export default function ProductsIndex() {
+    const { app_url } = usePage().props;
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [addModal, setAddModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -21,14 +22,6 @@ export default function ProductsTable() {
         title: "",
         description: "",
         image: "",
-        Material: "",
-        Finish_Options: "",
-        Glass_Type: "",
-        Lock_System: "",
-        Security_Rating: "",
-        Standard_Size: "",
-        Hardware: "",
-        Warranty: "",
         category_id: "",
     });
 
@@ -53,7 +46,6 @@ export default function ProductsTable() {
             console.log(error);
         }
     };
-    const { app_url } = usePage().props;
     useEffect(() => {
         showAllProducts();
         showAllCategories();
@@ -95,14 +87,6 @@ export default function ProductsTable() {
                 title: "",
                 description: "",
                 image: "",
-                Material: "",
-                Finish_Options: "",
-                Glass_Type: "",
-                Lock_System: "",
-                Security_Rating: "",
-                Standard_Size: "",
-                Hardware: "",
-                Warranty: "",
                 category_id: "",
             });
         } catch (error) {
@@ -162,115 +146,76 @@ export default function ProductsTable() {
                     </button>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 rounded-xl overflow-hidden">
-                        <thead className="bg-gray-50 dark:bg-gray-700 sticky top-0 z-10">
-                            <tr>
-                                {[
-                                    "#",
-                                    "Title",
-                                    "Description",
-                                    "Material",
-                                    "Finish Options",
-                                    "Glass Type",
-                                    "Lock System",
-                                    "Security Rating",
-                                    "Standard Size",
-                                    "Hardware",
-                                    "Warranty",
-                                    "category",
-                                    "Image",
-                                    "Actions",
-                                ].map((header, i) => (
-                                    <th
-                                        key={i}
-                                        className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider"
-                                    >
-                                        {header}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-                            {products.map((product, idx) => (
-                                <tr
-                                    key={product.id}
-                                    className={`transition-colors duration-200 ${
-                                        idx % 2 === 0
-                                            ? "bg-white dark:bg-gray-800"
-                                            : "bg-gray-50 dark:bg-gray-700"
-                                    } hover:bg-green-50 dark:hover:bg-green-900`}
-                                >
-                                    <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
-                                        {idx + 1}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-200">
-                                        {product.title}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.description}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Material}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Finish_Options}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Glass_Type}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Lock_System}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Security_Rating}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Standard_Size}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Hardware}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.Warranty}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
-                                        {product.category.name}
-                                    </td>
-                                    <td className="px-4 py-3 text-right">
-                                        <img
-                                            src={`${app_url}/storage/${product.image}`}
-                                            alt="Product"
-                                            className="h-8 w-10 object-cover rounded"
-                                        />
-                                    </td>
-                                     <td className="px-4 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">
-                                        <div className="flex items-center">
-                                            <button
-                                                onClick={() =>
-                                                    handleEditProduct(product)
-                                                }
-                                                className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900 rounded-lg transition-colors"
-                                            >
-                                                <PencilIcon className="h-4 w-4" />
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDeleteProduct(
-                                                        product
-                                                    )
-                                                }
-                                                className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-colors"
-                                            >
-                                                <TrashIcon className="h-4 w-4" />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+<div className="overflow-x-auto">
+    <table className="min-w-full table-fixed">
+        <colgroup>
+            <col className="w-16" />
+            <col className="w-1/5" />
+            <col className="w-2/5" />
+            <col className="w-1/5" />
+            <col className="w-32" />
+            <col className="w-32" />
+        </colgroup>
+        <thead className="bg-gray-50 dark:bg-gray-700 sticky top-0 z-10">
+            <tr>
+                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">#</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Title</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Description</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">category</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Image</th>
+                <th className="px-4 py-3 text-center text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">action</th>
+            </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+            {products.map((product, idx) => (
+                <tr
+                    key={product.id}
+                    className={`transition-colors duration-200 ${
+                        idx % 2 === 0
+                            ? "bg-white dark:bg-gray-800"
+                            : "bg-gray-50 dark:bg-gray-700"
+                    } hover:bg-green-50 dark:hover:bg-green-900`}
+                >
+                    <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
+                        {idx + 1}
+                    </td>
+                    <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-200">
+                        {product.title}
+                    </td>
+                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
+                        {product.description}
+                    </td>
+                    <td className="px-4 py-3 text-right text-gray-600 dark:text-gray-300">
+                        {product.category.name}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                        <img
+                            src={`${app_url}/storage/${product.image}`}
+                            alt="Product"
+                            className="h-8 w-10 object-cover rounded mx-auto"
+                        />
+                    </td>
+                    <td className="px-4 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300 text-center">
+                        <div className="flex justify-center space-x-2">
+                            <button
+                                onClick={() => handleEditProduct(product)}
+                                className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900 rounded-lg transition-colors"
+                            >
+                                <PencilIcon className="h-4 w-4" />
+                            </button>
+                            <button
+                                onClick={() => handleDeleteProduct(product)}
+                                className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-colors"
+                            >
+                                <TrashIcon className="h-4 w-4" />
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
 
                 {/* Add Product Modal */}
                 {addModal && (
@@ -364,14 +309,6 @@ function ProductModal({
                 {[
                     "title",
                     "description",
-                    "Material",
-                    "Finish_Options",
-                    "Glass_Type",
-                    "Lock_System",
-                    "Security_Rating",
-                    "Standard_Size",
-                    "Hardware",
-                    "Warranty",
                 ].map((field, i) => (
                     <div key={i}>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

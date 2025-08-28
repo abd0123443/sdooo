@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transformation extends Model
 {
     protected $fillable = [
-        'title',
+        'name',
         'description',
-        'location',
-        'tag',
-        'image'
+        'work',
     ];
 }

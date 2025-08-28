@@ -16,14 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('image');
-            $table->string('Material');
-            $table->string('Finish_Options');
-            $table->string('Glass_Type');
-            $table->string('Lock_System');
-            $table->string('Security_Rating');
-            $table->string('Standard_Size');
-            $table->string('Hardware');
-            $table->string('Warranty');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

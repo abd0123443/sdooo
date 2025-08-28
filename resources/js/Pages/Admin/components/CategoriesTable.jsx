@@ -74,16 +74,13 @@ export default function CategoriesTable() {
         if (newCategory.image instanceof File) {
             formData.append("image", newCategory.image);
         }
-        if (newCategory.pdf_file instanceof File) {
-            formData.append("pdf_file", newCategory.pdf_file);
-        }
         try {
             await axios.post(`${app_url}/api/categories/store`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             closeModal();
             showAllCategories();
-            setNewCategory({ name: "", image: "", description: "", pdf_file: null });
+            setNewCategory({ name: "", image: "", description: "",});
         } catch (error) {
             setErrors(error.response.data.errors);
             console.log(error);
@@ -99,18 +96,15 @@ export default function CategoriesTable() {
         if (selectedCategory.image instanceof File) {
             formData.append("image", selectedCategory.image);
         }
-        if (selectedCategory.pdf_file instanceof File) {
-            formData.append("pdf_file", selectedCategory.pdf_file);
-        }
-        closeModal();
         try {
             await axios.post(
                 `${app_url}/api/categories/update/${selectedCategory.id}`,
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
+            closeModal();
             showAllCategories();
-            setSelectedCategory({ id: null, name: "", description: "", image: "", pdf_file: null });
+            setSelectedCategory({ id: null, name: "", description: "", image: "" });
         } catch (error) {
             console.log(error);
             setErrors(error.response.data.errors);
@@ -152,7 +146,6 @@ export default function CategoriesTable() {
                                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">#</th>
                                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Name</th>
                                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Image</th>
-                                <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">PDF</th>
                                 <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -169,13 +162,6 @@ export default function CategoriesTable() {
                                     </td>
                                     <td className="px-4 py-3 text-right">
                                         <img src={`${app_url}/storage/${category.image}`} alt="image category" className="h-8 w-10 object-cover object-center rounded" />
-                                    </td>
-                                    <td className="px-4 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">
-                                        {category.pdf_file ? (
-                                            <a href={`${app_url}/storage/${category.pdf_file}`} target="_blank" className="text-blue-600 underline">PDF</a>
-                                        ) : (
-                                            "No PDF"
-                                        )}
                                     </td>
                                     <td className="px-4 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">
                                         <div className="flex items-center">
@@ -222,10 +208,6 @@ export default function CategoriesTable() {
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category Image</label>
                                 <input type="file" accept="image/*" onChange={(e) => setNewCategory({ ...newCategory, image: e.target.files[0] })} className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category PDF</label>
-                                <input type="file" accept="application/pdf" onChange={(e) => setNewCategory({ ...newCategory, pdf_file: e.target.files[0] })} className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
-                            </div>
                             <div className="flex gap-3 pt-4">
                                 <button onClick={closeModal} className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors">Cancel</button>
                                 <button onClick={handleSendAddCategory} className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors">Add</button>
@@ -257,13 +239,6 @@ export default function CategoriesTable() {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category Image</label>
                                 <input type="file" accept="image/*" onChange={(e) => setSelectedCategory({ ...selectedCategory, image: e.target.files[0] })} className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category PDF</label>
-                                <input type="file" accept="application/pdf" onChange={(e) => setSelectedCategory({ ...selectedCategory, pdf_file: e.target.files[0] })} className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-700 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" />
-                                {selectedCategory.pdf_file && typeof selectedCategory.pdf_file === "string" && (
-                                    <a href={`${app_url}/storage/${selectedCategory.pdf_file}`} target="_blank" className="text-blue-600 underline mt-1 block">View Current PDF</a>
-                                )}
                             </div>
                             <div className="flex gap-3 pt-4">
                                 <button onClick={closeModal} className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors">Cancel</button>

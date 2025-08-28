@@ -17,11 +17,9 @@ export default function TransformationTable() {
     const [transformations, setTransformations] = useState([]);
     const [selectedTransformation, setSelectedTransformation] = useState(null);
     const [newTransformation, setNewTransformation] = useState({
-        title: "",
-        image: "",
+        name: "",
         description: "",
-        location: "",
-        tag: "",
+        work: "",
     });
     const { app_url } = usePage().props;
     const [errors, setErrors] = useState({});
@@ -69,11 +67,9 @@ export default function TransformationTable() {
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
             setNewTransformation({
-                title: "",
-                image: "",
+                name: "",
                 description: "",
-                location: "",
-                tag: "",
+                work: "",
             });
             showAllTransformations();
             closeModal();
@@ -122,14 +118,14 @@ export default function TransformationTable() {
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                         <ClipboardDocumentListIcon className="h-6 w-6 text-green-500" />
-                        Transformations
+                        Customer Review
                     </h3>
                     <button
                         onClick={handleAddTransformation}
                         className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700"
                     >
                         <PlusIcon className="h-4 w-4 mr-1.5" />
-                        Add New Transformation
+                        Add Customer Review
                     </button>
                 </div>
 
@@ -141,20 +137,13 @@ export default function TransformationTable() {
                                     #
                                 </th>
                                 <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                    Title
+                                    name
                                 </th>
                                 <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                     Description
                                 </th>
                                 <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                    Location
-                                </th>
-                                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                    Tag
-                                </th>
-                                <th className="px-4 py-3 text-right text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                    {" "}
-                                    Image
+                                    work
                                 </th>
                                 <th className="px-4 py-3 text-center text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                                     Actions
@@ -175,23 +164,13 @@ export default function TransformationTable() {
                                         {idx + 1}
                                     </td>
                                     <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
-                                        {t.title}
+                                        {t.name}
                                     </td>
                                     <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
                                         {t.description}
                                     </td>
                                     <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
-                                        {t.location}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
-                                        {t.tag}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-gray-500 dark:text-gray-400">
-                                        <img
-                                            src={`${app_url}/storage/${t.image}`}
-                                            alt="transformation"
-                                            className="h-8 w-10 object-cover rounded"
-                                        />
+                                        {t.work}
                                     </td>
                                     <td className="px-4 py-3 text-xs font-semibold text-gray-600 dark:text-gray-300">
                                         <div className="flex items-center justify-center">
@@ -228,7 +207,7 @@ export default function TransformationTable() {
                     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4">
                         <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
                             <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200">
-                                Add New Transformation
+                                Add Customer Review
                             </h3>
                             <button
                                 onClick={closeModal}
@@ -244,7 +223,7 @@ export default function TransformationTable() {
                                     {msgs.join(", ")}
                                 </div>
                             ))}
-                        {["title", "description", "location", "tag"].map(
+                        {["name", "description", "work"].map(
                             (field) => (
                                 <div key={field}>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -264,22 +243,7 @@ export default function TransformationTable() {
                                 </div>
                             )
                         )}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Image
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-                                onChange={(e) =>
-                                    setNewTransformation({
-                                        ...newTransformation,
-                                        image: e.target.files[0],
-                                    })
-                                }
-                            />
-                        </div>
+
                         <div className="flex gap-3 pt-4">
                             <button
                                 className="flex-1 px-4 py-2 bg-gray-100 rounded-lg"
@@ -304,7 +268,7 @@ export default function TransformationTable() {
                     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4">
                         <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
                             <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200">
-                                Edit Transformation
+                                Edit Customer Review
                             </h3>
                             <button
                                 onClick={closeModal}
@@ -321,7 +285,7 @@ export default function TransformationTable() {
                                 </div>
                             ))}
 
-                        {["title", "description", "location", "tag"].map(
+                        {["name", "description", "work"].map(
                             (field) => (
                                 <div key={field}>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -341,23 +305,6 @@ export default function TransformationTable() {
                                 </div>
                             )
                         )}
-
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Image
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                onChange={(e) =>
-                                    setSelectedTransformation({
-                                        ...selectedTransformation,
-                                        image: e.target.files[0],
-                                    })
-                                }
-                            />
-                        </div>
 
                         <div className="flex gap-3 pt-4">
                             <button

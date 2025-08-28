@@ -1,0 +1,4 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: rgb(34 197 94) !important; /* Tailwind's green-500 */
+}

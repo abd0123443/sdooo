@@ -19,14 +19,6 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'Material' => 'required|string',
-            'Finish_Options' => 'required|string',
-            'Glass_Type' => 'required|string',
-            'Lock_System' => 'required|string',
-            'Security_Rating' => 'required|string',
-            'Standard_Size' => 'required|string',
-            'Hardware' => 'required|string',
-            'Warranty' => 'required|string',
             'category_id' => 'required|string|exists:categories,id',
             'image' => 'required|image'
         ]);
@@ -40,14 +32,6 @@ class ProductController extends Controller
         $product = Product::create([
             'title' => $request->title,
             'description' => $request->description,
-            'Material' => $request->Material,
-            'Finish_Options' => $request->Finish_Options,
-            'Glass_Type' => $request->Glass_Type,
-            'Lock_System' => $request->Lock_System,
-            'Security_Rating' => $request->Security_Rating,
-            'Standard_Size' => $request->Standard_Size,
-            'Hardware' => $request->Hardware,
-            'Warranty' => $request->Warranty,
             'category_id' => $request->category_id,
             'image' => $imagePath,
         ]);
@@ -59,14 +43,6 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'Material' => 'required|string',
-            'Finish_Options' => 'required|string',
-            'Glass_Type' => 'required|string',
-            'Lock_System' => 'required|string',
-            'Security_Rating' => 'required|string',
-            'Standard_Size' => 'required|string',
-            'Hardware' => 'required|string',
-            'Warranty' => 'required|string',
             'category_id' => 'required|integer|exists:categories,id',
             'image' => 'nullable'
         ]);
@@ -82,14 +58,6 @@ class ProductController extends Controller
         }
         $product->title = $request->title;
         $product->description = $request->description;
-        $product->Material = $request->Material;
-        $product->Finish_Options = $request->Finish_Options;
-        $product->Glass_Type = $request->Glass_Type;
-        $product->Lock_System = $request->Lock_System;
-        $product->Security_Rating = $request->Security_Rating;
-        $product->Standard_Size = $request->Standard_Size;
-        $product->Hardware = $request->Hardware;
-        $product->Warranty = $request->Warranty;
         $product->category_id = $request->category_id;
         $product->save();
         return response()->json(['message' => 'Edit successfully']);

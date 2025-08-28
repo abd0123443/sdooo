@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { BellIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { BellIcon, SunIcon, MoonIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { Link } from '@inertiajs/react';
 import { ThemeContext } from '../../../Contexts/ThemeContext';
 
-export default function Header({ isOpen }) {
+export default function Header({ isOpen, setIsOpen }) {
     // Mock user data
     const user = { name: 'Jane Doe', avatar: null };
     const initials = user.name.split(' ').map(n => n[0]).join('');
@@ -20,14 +20,23 @@ export default function Header({ isOpen }) {
 
     return (
         <header
-            className={`fixed top-0 ${headerPosition} ${headerWidth}
+            className={`fixed top-0 left-0 w-full ${headerPosition} ${headerWidth}
                 z-30 flex items-center justify-between
                 px-6 py-4 bg-white dark:bg-gray-800
                 shadow-md transition-all duration-300`}
         >
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-                Dashboard
-            </h1>
+            <div className="flex items-center">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition sm:hidden"
+                    aria-label="Toggle sidebar"
+                >
+                    <Bars3Icon className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+                </button>
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200 ml-4 sm:ml-0">
+                    Dashboard
+                </h1>
+            </div>
             <div className="flex items-center gap-4">
                 {/* Dark/Light Mode Toggle */}
                 {/* <button
