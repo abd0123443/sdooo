@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Header from '@/Components/Header';
 import Footer from '@/Components/Footer';
+import { Head, usePage } from "@inertiajs/react";
 import '../../css/contact.css';
-import { PhoneIcon, EnvelopeIcon, MapPinIcon, ClockIcon, ExclamationTriangleIcon, MapIcon } from '@heroicons/react/24/solid';
+import { PhoneIcon, MapPinIcon, ClockIcon, ExclamationTriangleIcon, MapIcon } from '@heroicons/react/24/solid';
+import { FaFacebookF, FaInstagram, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
@@ -28,51 +30,13 @@ const Contact = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-
     return (
         <>
             <Header />
             <Head>
-                <title key="title">
-                    {t(
-                        "contact"
-                    )}
-                </title>
-                <meta
-                    key="desc"
-                    name="description"
-                    content={t(
-                        "Medine Steel Doors offers premium door installation services, combining security, style, and durability. Specializing in steel doors, we provide high-quality solutions for homes and businesses."
-                    )}
-                />
-                <meta
-                    key="ogtitle"
-                    property="og:title"
-                    content={t(
-                        "Medine Steel Doors - Premium Door Installation Services"
-                    )}
-                />
-                <meta
-                    key="ogdesc"
-                    property="og:description"
-                    content={t(
-                        "Medine Steel Doors offers premium door installation services, combining security, style, and durability. Specializing in steel doors, we provide high-quality solutions for homes and businesses."
-                    )}
-                />
-                <meta
-                    key="ogimage"
-                    property="og:image"
-                    content={`${app_url}/icon.jpeg`}
-                />
-                <meta key="ogurl" property="og:url" content={app_url} />
-                <meta
-                    key="keywords"
-                    name="keywords"
-                    content={t(
-                        "steel doors, door installation, security doors, modern doors, durable doors, home improvement, Medine Steel Doors"
-                    )}
-                />
+                <title key="title">{t("contact")}</title>
             </Head>
+
             <header className="contact-header">
                 <div className="container">
                     <h1>{t('contact_header_title')}</h1>
@@ -91,15 +55,6 @@ const Contact = () => {
                                     <p>{t('phone_main')}: <strong>(555) 123-4567</strong><br />
                                        {t('phone_whatsapp')}: <strong>(555) 765-4321</strong><br />
                                        {t('available_24_7_emergencies')}</p>
-                                </div>
-                            </div>
-                            <div className="info-item">
-                                <div className="info-icon"><EnvelopeIcon className="h-6 w-6" /></div>
-                                <div className="info-content">
-                                    <h3>{t('email_address_title')}</h3>
-                                    <p>{t('email_general_inquiries')}: <strong>info@doorexcellence.com</strong><br />
-                                       {t('email_support')}: <strong>support@doorexcellence.com</strong><br />
-                                       {t('email_quotes')}: <strong>quotes@doorexcellence.com</strong></p>
                                 </div>
                             </div>
                             <div className="info-item">
@@ -124,8 +79,6 @@ const Contact = () => {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div className="emergency-contact animated" ref={el => animatedElements.current[2] = el}>
@@ -155,15 +108,23 @@ const Contact = () => {
             <section className="social-section">
                 <div className="container">
                     <h2 className="social-title">{t('follow_us_title')}</h2>
-                    <div className="social-links">
-                        <a href="#" className="social-link animated" ref={el => animatedElements.current[4] = el}><i className="fab fa-facebook-f"></i></a>
-                        <a href="#" className="social-link animated" ref={el => animatedElements.current[5] = el}><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="social-link animated" ref={el => animatedElements.current[6] = el}><i className="fab fa-twitter"></i></a>
-                        <a href="#" className="social-link animated" ref={el => animatedElements.current[7] = el}><i className="fab fa-linkedin-in"></i></a>
-                        <a href="#" className="social-link animated" ref={el => animatedElements.current[8] = el}><i className="fab fa-youtube"></i></a>
+                    <div className="social-links flex gap-4 justify-center">
+                        <a href="https://www.facebook.com/share/1LokMm27Zu/" target="_blank" rel="noopener noreferrer" className="social-link animated" ref={el => animatedElements.current[4] = el}>
+                            <FaFacebookF className="h-6 w-6 text-blue-600" />
+                        </a>
+                        <a href="https://www.instagram.com/medinecelikapi?igsh=NWQ4anVsNW5hbWds" target="_blank" rel="noopener noreferrer" className="social-link animated" ref={el => animatedElements.current[5] = el}>
+                            <FaInstagram className="h-6 w-6 text-pink-500" />
+                        </a>
+                        <a href="mailto:medinecelikkapi@gmail.com" className="social-link animated" ref={el => animatedElements.current[6] = el}>
+                            <FaEnvelope className="h-6 w-6 text-gray-800" />
+                        </a>
+                        <a href="https://wa.me/905380833252" target="_blank" rel="noopener noreferrer" className="social-link animated" ref={el => animatedElements.current[7] = el}>
+                            <FaWhatsapp className="h-6 w-6 text-green-600" />
+                        </a>
                     </div>
                 </div>
             </section>
+
             <Footer />
         </>
     );
