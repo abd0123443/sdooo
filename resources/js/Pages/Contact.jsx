@@ -32,6 +32,47 @@ const Contact = () => {
     return (
         <>
             <Header />
+            <Head>
+                <title key="title">
+                    {t(
+                        "contact"
+                    )}
+                </title>
+                <meta
+                    key="desc"
+                    name="description"
+                    content={t(
+                        "Medine Steel Doors offers premium door installation services, combining security, style, and durability. Specializing in steel doors, we provide high-quality solutions for homes and businesses."
+                    )}
+                />
+                <meta
+                    key="ogtitle"
+                    property="og:title"
+                    content={t(
+                        "Medine Steel Doors - Premium Door Installation Services"
+                    )}
+                />
+                <meta
+                    key="ogdesc"
+                    property="og:description"
+                    content={t(
+                        "Medine Steel Doors offers premium door installation services, combining security, style, and durability. Specializing in steel doors, we provide high-quality solutions for homes and businesses."
+                    )}
+                />
+                <meta
+                    key="ogimage"
+                    property="og:image"
+                    content={`${app_url}/icon.jpeg`}
+                />
+                <meta key="ogurl" property="og:url" content={app_url} />
+                <meta
+                    key="keywords"
+                    name="keywords"
+                    content={t(
+                        "steel doors, door installation, security doors, modern doors, durable doors, home improvement, Medine Steel Doors"
+                    )}
+                />
+            </Head>
             <header className="contact-header">
                 <div className="container">
                     <h1>{t('contact_header_title')}</h1>
