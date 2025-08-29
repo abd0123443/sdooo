@@ -27,11 +27,11 @@ const About_Us = () => {
         <>
             <Header />
             <Head>
-                <title>{t('Aboute Us')}</title>
+                <title>{t('About Us')}</title>
             </Head>
 
 <main className="max-w-6xl mx-auto p-6 my-32">
-    <h1 className="text-3xl font-bold mb-6 text-center">{t('Aboute Us')}</h1>
+    <h1 className="text-3xl font-bold mb-6 text-center">{t('About Us')}</h1>
 
     {!about ? (
         <p className="text-center text-gray-600 dark:text-gray-300">

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from '@inertiajs/react';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { Link } from "@inertiajs/react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
     const { t } = useTranslation();
@@ -15,43 +15,62 @@ export default function Footer() {
                                 <img src="/icon.jpeg" alt="" />
                             </div>
                             <span className="text-2xl font-bold">
-                                {t('Medine Steel Doors')}
+                                {t("Medine Steel Doors")}
                             </span>
                         </div>
                         <p className="text-gray-300 mb-6 max-w-md">
-                            {t("Where security meets sophistication. Premium steel door solutions with precision craftsmanship and innovative design")}
+                            {t(
+                                "Where security meets sophistication. Premium steel door solutions with precision craftsmanship and innovative design"
+                            )}
                         </p>
                     </div>
                     <div>
                         <h4 className="text-lg font-bold text-green-200 mb-6">
                             {t("Quick Links")}
                         </h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <Link
-                                    href="/"
-                                    className="text-gray-300 hover:text-white transition-colors"
-                                >
-                                    {t("Home")}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/portfolio"
-                                    className="text-gray-300 hover:text-white transition-colors"
-                                >
-                                    {t("Portfolio")}
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    href="/contact"
-                                    className="text-gray-300 hover:text-white transition-colors"
-                                >
-                                    {t("Contact")}
-                                </Link>
-                            </li>
+                        <ul className="space-y-3 flex flex-col">
+                            <Link
+                                href="/"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Home")}
+                            </Link>
+                            <Link
+                                href="/about_us"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("About Us")}
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Contact")}
+                            </Link>
+                            <Link
+                                href="/Building_Entrance_Door"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Building Entrance Door")}
+                            </Link>
+                            <Link
+                                href="/Fire_Door"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Villa Doors")}
+                            </Link>
+                            <Link
+                                href="/Villa_Doors"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Fire Door")}
+                            </Link>
+                            <Link
+                                href="/Steel_Door"
+                                className="text-gray-300 hover:text-white transition-colors"
+                            >
+                                {t("Steel Door")}
+                            </Link>
                         </ul>
                     </div>
                     <div>
@@ -86,16 +105,17 @@ export default function Footer() {
                             </li>
                             <li className="flex items-start space-x-3">
                                 <svg
-                                    className="w-5 h-5 text-green-400 mt-1"
+                                    className="w-24  h-10 text-green-400 mt-1"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                                 </svg>
                                 <span className="text-gray-300">
-                                    {t("123 Steel Avenue")}
-                                    <br />
-                                    {t("Security City, SC 12345")}
+                                    Mecidiye, Fatih Blv. No:444, 34930
+                                    Sultanbeyli/İstanbul, Türkiye(Mecidiye,
+                                    Fatih Blv. No:444, 34930
+                                    Sultanbeyli/İstanbul, Türkiye)
                                 </span>
                             </li>
                         </ul>

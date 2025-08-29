@@ -99,7 +99,7 @@ export default function Header() {
                                 href="/about_us"
                                 className={getLinkClass("/about_us") + " block"}
                             >
-                                {t("Aboute Us")}
+                                {t("About Us")}
                             </Link>
                             <Link
                                 href="/Building_Entrance_Door"
@@ -253,7 +253,7 @@ export default function Header() {
                             href="/about_us"
                             className={getLinkClass("/about_us") + " block"}
                         >
-                            {t("Aboute Us")}
+                            {t("About Us")}
                         </Link>
                         <Link
                             href="/contact"
