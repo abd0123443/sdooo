@@ -6,6 +6,7 @@ export default function Header() {
     const { url } = usePage();
     const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [currentLang, setCurrentLang] = useState('en');
     const langDropdownRef = useRef(null);
     const mobileDropdownRef = useRef(null);
 
@@ -35,12 +36,55 @@ export default function Header() {
             : "text-gray-700 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium";
     };
 
-    const translateLink = (langCode) =>
-        `https://translate.google.com/translate?hl=en&sl=auto&tl=${langCode}&u=${window.location.href}`;
+    // دالة لترجمة الصفحة باستخدام iframe
+    const translatePage = (langCode) => {
+        setCurrentLang(langCode);
+
+        if (langCode === 'en') {
+            // إذا كانت الإنجليزية، نعود للصفحة الأصلية
+            window.location.href = window.location.origin + window.location.pathname;
+            return;
+        }
+
+        // إنشاء iframe للترجمة
+        const translateUrl = `https://translate.google.com/translate?hl=en&sl=auto&tl=${langCode}&u=${encodeURIComponent(window.location.href)}&sandbox=1`;
+
+        // حفظ اللغة المختارة
+        localStorage.setItem('selectedLanguage', langCode);
+
+        // الانتقال لصفحة الترجمة
+        window.location.href = translateUrl;
+    };
+
+    // عند تحميل المكون، نتحقق إذا كانت هناك لغة محفوظة مسبقاً
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage && window.location.hostname !== 'translate.google.com') {
+            setCurrentLang(savedLanguage);
+        }
+
+        // إذا كنا في صفحة الترجمة، نضيف بعض الأنماط لتحسين المظهر
+        if (window.location.hostname === 'translate.google.com') {
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .goog-te-banner-frame, .goog-te-menu-frame {
+                    display: none !important;
+                }
+                body {
+                    top: 0 !important;
+                }
+                #google_translate_element {
+                    display: none;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }, []);
 
     return (
         <>
             <FloatingButtons />
+
             <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
@@ -89,7 +133,7 @@ export default function Header() {
                                     onClick={toggleLangDropdown}
                                     className="inline-flex justify-center w-full rounded-md border border-green-700 shadow-sm px-4 py-2 bg-green-600 text-white text-sm font-medium hover:bg-green-700"
                                 >
-                                    Language
+                                    {currentLang === 'en' ? 'English' : currentLang === 'ar' ? 'العربية' : 'Türkçe'}
                                     <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
@@ -97,9 +141,9 @@ export default function Header() {
 
                                 <div className={`absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-green-600 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 ${isLangDropdownOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"}`}>
                                     <div className="py-1">
-                                        <button onClick={() => window.location.href = translateLink("en")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">English</button>
-                                        <button onClick={() => window.location.href = translateLink("ar")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">العربية</button>
-                                        <button onClick={() => window.location.href = translateLink("tr")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">Türkçe</button>
+                                        <button onClick={() => translatePage("en")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">English</button>
+                                        <button onClick={() => translatePage("ar")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">العربية</button>
+                                        <button onClick={() => translatePage("tr")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">Türkçe</button>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +181,7 @@ export default function Header() {
                                 onClick={toggleLangDropdown}
                                 className="inline-flex justify-center w-full rounded-md border border-green-700 shadow-sm px-4 py-2 bg-green-600 text-white text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                             >
-                                Language
+                                {currentLang === 'en' ? 'English' : currentLang === 'ar' ? 'العربية' : 'Türkçe'}
                                 <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
@@ -145,9 +189,9 @@ export default function Header() {
 
                             <div className={`absolute right-0 mt-2 w-full rounded-md shadow-lg bg-green-600 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 ${isLangDropdownOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"}`}>
                                 <div className="py-1">
-                                    <button onClick={() => window.location.href = translateLink("en")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">English</button>
-                                    <button onClick={() => window.location.href = translateLink("ar")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">العربية</button>
-                                    <button onClick={() => window.location.href = translateLink("tr")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">Türkçe</button>
+                                    <button onClick={() => translatePage("en")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">English</button>
+                                    <button onClick={() => translatePage("ar")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">العربية</button>
+                                    <button onClick={() => translatePage("tr")} className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-green-700">Türkçe</button>
                                 </div>
                             </div>
                         </div>
