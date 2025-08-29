@@ -84,7 +84,55 @@ export default function Header() {
             if (selectField) {
                 selectField.value = langCode;
                 selectField.dispatchEvent(new Event('change'));
+
+                // إخفاء عناصر واجهة جوجل غير المرغوب فيها
+                setTimeout(() => {
+                    const frame = document.querySelector('.goog-te-banner-frame');
+                    if (frame) frame.style.display = 'none';
+
+                    const gadget = document.querySelector('.goog-te-gadget');
+                    if (gadget) gadget.style.color = 'transparent';
+
+                    // إضافة زر "عرض الأصل" يدوياً
+                    addShowOriginalButton();
+                }, 500);
             }
+        }
+    };
+
+    // دالة لإضافة زر "عرض الأصل" يدوياً
+    const addShowOriginalButton = () => {
+        // إزالة أي زر سابق إذا كان موجوداً
+        const existingButton = document.getElementById('show-original-button');
+        if (existingButton) {
+            existingButton.remove();
+        }
+
+        // إنشاء زر جديد
+        const showOriginalButton = document.createElement('button');
+        showOriginalButton.id = 'show-original-button';
+        showOriginalButton.textContent = 'Show Original';
+        showOriginalButton.style.position = 'fixed';
+        showOriginalButton.style.bottom = '20px';
+        showOriginalButton.style.right = '20px';
+        showOriginalButton.style.zIndex = '9999';
+        showOriginalButton.style.padding = '10px 15px';
+        showOriginalButton.style.backgroundColor = '#16a34a';
+        showOriginalButton.style.color = 'white';
+        showOriginalButton.style.border = 'none';
+        showOriginalButton.style.borderRadius = '5px';
+        showOriginalButton.style.cursor = 'pointer';
+
+        showOriginalButton.onclick = () => {
+            // العودة للغة الأصلية
+            translatePage('en');
+            // إزالة الزر بعد النقر
+            showOriginalButton.remove();
+        };
+
+        // إضافة الزر إلى الصفحة فقط إذا لم تكن اللغة انجليزية
+        if (currentLang !== 'en') {
+            document.body.appendChild(showOriginalButton);
         }
     };
 
@@ -93,11 +141,18 @@ export default function Header() {
         const savedLanguage = localStorage.getItem('selectedLanguage');
         if (savedLanguage) {
             setCurrentLang(savedLanguage);
-            // لا نطبق الترجمة تلقائياً عند التحميل
+            // تطبيق الترجمة إذا كانت اللغة مخزنة ومختلفة عن الإنجليزية
+            if (savedLanguage !== 'en') {
+                // ننتظر قليلاً لتحميل DOM ثم نطبق الترجمة
+                setTimeout(() => {
+                    loadGoogleTranslate();
+                    setTimeout(() => changeLanguage(savedLanguage), 1000);
+                }, 500);
+            }
+        } else {
+            // تحميل أداة الترجمة عند بدء التحميل للاستعداد للاستخدام
+            loadGoogleTranslate();
         }
-
-        // تحميل أداة الترجمة عند بدء التحميل
-        loadGoogleTranslate();
     }, []);
 
     return (
@@ -238,6 +293,12 @@ export default function Header() {
                     }
                     body {
                         top: 0px !important;
+                    }
+                    #google_translate_element {
+                        display: none;
+                    }
+                    .skiptranslate {
+                        display: none !important;
                     }
                 `}
             </style>
