@@ -36,104 +36,25 @@ export default function Header() {
             : "text-gray-700 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium";
     };
 
-    // دالة لتحميل أداة ترجمة جوجل
-    const loadGoogleTranslate = () => {
-        // إذا كانت الأداة محملة مسبقاً، لا نحتاج لتحميلها again
-        if (window.google && window.google.translate) return;
-
-        const addScript = document.createElement('script');
-        addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
-        document.body.appendChild(addScript);
-
-        window.googleTranslateElementInit = () => {
-            new window.google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,ar,tr',
-                layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        };
-    };
-
-    // دالة لتفعيل الترجمة للغة محددة
+    // دالة لترجمة الصفحة باستخدام proxy لتجنب مشاكل CORS
     const translatePage = (langCode) => {
-        // التأكد من تحميل أداة الترجمة أولاً
-        if (!window.google || !window.google.translate) {
-            loadGoogleTranslate();
-
-            // ننتظر حتى يتم تحميل الأداة ثم نغير اللغة
-            const checkInterval = setInterval(() => {
-                if (window.google && window.google.translate) {
-                    clearInterval(checkInterval);
-                    changeLanguage(langCode);
-                }
-            }, 100);
-        } else {
-            changeLanguage(langCode);
-        }
-
-        setIsLangDropdownOpen(false);
         setCurrentLang(langCode);
+
+        if (langCode === 'en') {
+            // إذا كانت الإنجليزية، نعود للصفحة الأصلية
+            window.location.href = window.location.origin + window.location.pathname;
+            return;
+        }
+
+        // استخدام proxy خاص بترجمة جوجل لتجنب مشاكل CORS
+        const currentUrl = encodeURIComponent(window.location.href);
+        const translateUrl = `https://translate.google.com/translate?depth=1&nv=1&rurl=translate.google.com&sl=auto&sp=nmt4&tl=${langCode}&u=${currentUrl}&xid=456,186`;
+
+        // الانتقال لصفحة الترجمة
+        window.location.href = translateUrl;
+
         localStorage.setItem('selectedLanguage', langCode);
-    };
-
-    // دالة لتغيير اللغة مباشرة
-    const changeLanguage = (langCode) => {
-        if (window.google && window.google.translate) {
-            const selectField = document.querySelector('.goog-te-combo');
-            if (selectField) {
-                selectField.value = langCode;
-                selectField.dispatchEvent(new Event('change'));
-
-                // إخفاء عناصر واجهة جوجل غير المرغوب فيها
-                setTimeout(() => {
-                    const frame = document.querySelector('.goog-te-banner-frame');
-                    if (frame) frame.style.display = 'none';
-
-                    const gadget = document.querySelector('.goog-te-gadget');
-                    if (gadget) gadget.style.color = 'transparent';
-
-                    // إضافة زر "عرض الأصل" يدوياً
-                    addShowOriginalButton();
-                }, 500);
-            }
-        }
-    };
-
-    // دالة لإضافة زر "عرض الأصل" يدوياً
-    const addShowOriginalButton = () => {
-        // إزالة أي زر سابق إذا كان موجوداً
-        const existingButton = document.getElementById('show-original-button');
-        if (existingButton) {
-            existingButton.remove();
-        }
-
-        // إنشاء زر جديد
-        const showOriginalButton = document.createElement('button');
-        showOriginalButton.id = 'show-original-button';
-        showOriginalButton.textContent = 'Show Original';
-        showOriginalButton.style.position = 'fixed';
-        showOriginalButton.style.bottom = '20px';
-        showOriginalButton.style.right = '20px';
-        showOriginalButton.style.zIndex = '9999';
-        showOriginalButton.style.padding = '10px 15px';
-        showOriginalButton.style.backgroundColor = '#16a34a';
-        showOriginalButton.style.color = 'white';
-        showOriginalButton.style.border = 'none';
-        showOriginalButton.style.borderRadius = '5px';
-        showOriginalButton.style.cursor = 'pointer';
-
-        showOriginalButton.onclick = () => {
-            // العودة للغة الأصلية
-            translatePage('en');
-            // إزالة الزر بعد النقر
-            showOriginalButton.remove();
-        };
-
-        // إضافة الزر إلى الصفحة فقط إذا لم تكن اللغة انجليزية
-        if (currentLang !== 'en') {
-            document.body.appendChild(showOriginalButton);
-        }
+        setIsLangDropdownOpen(false);
     };
 
     // عند تحميل المكون، نتحقق إذا كانت هناك لغة محفوظة مسبقاً
@@ -141,26 +62,64 @@ export default function Header() {
         const savedLanguage = localStorage.getItem('selectedLanguage');
         if (savedLanguage) {
             setCurrentLang(savedLanguage);
-            // تطبيق الترجمة إذا كانت اللغة مخزنة ومختلفة عن الإنجليزية
-            if (savedLanguage !== 'en') {
-                // ننتظر قليلاً لتحميل DOM ثم نطبق الترجمة
-                setTimeout(() => {
-                    loadGoogleTranslate();
-                    setTimeout(() => changeLanguage(savedLanguage), 1000);
-                }, 500);
-            }
-        } else {
-            // تحميل أداة الترجمة عند بدء التحميل للاستعداد للاستخدام
-            loadGoogleTranslate();
+        }
+
+        // إذا كنا في صفحة الترجمة، نضيف بعض الأنماط لتحسين المظهر
+        if (window.location.hostname.includes('translate.goog')) {
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .goog-te-banner-frame, .goog-te-menu-frame {
+                    display: none !important;
+                }
+                body {
+                    top: 0 !important;
+                }
+                #google_translate_element {
+                    display: none;
+                }
+                /* إصلاح الروابط في صفحة الترجمة */
+                a[href*="translate.goog"] {
+                    pointer-events: none;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // إضافة زر للعودة للموقع الأصلي
+            addBackToOriginalButton();
         }
     }, []);
+
+    // دالة لإضافة زر العودة للموقع الأصلي
+    const addBackToOriginalButton = () => {
+        // إزالة أي زر سابق إذا كان موجوداً
+        const existingButton = document.getElementById('back-to-original');
+        if (existingButton) {
+            existingButton.remove();
+        }
+
+        // إنشاء زر جديد
+        const backButton = document.createElement('a');
+        backButton.id = 'back-to-original';
+        backButton.href = window.location.origin;
+        backButton.textContent = 'Back to Original Site';
+        backButton.style.position = 'fixed';
+        backButton.style.bottom = '20px';
+        backButton.style.right = '20px';
+        backButton.style.zIndex = '9999';
+        backButton.style.padding = '10px 15px';
+        backButton.style.backgroundColor = '#16a34a';
+        backButton.style.color = 'white';
+        backButton.style.textDecoration = 'none';
+        backButton.style.borderRadius = '5px';
+        backButton.style.cursor = 'pointer';
+
+        // إضافة الزر إلى الصفحة
+        document.body.appendChild(backButton);
+    };
 
     return (
         <>
             <FloatingButtons />
-
-            {/* عنصر ترجمة جوجل - مخفي ولكن ضروري للعمل */}
-            <div id="google_translate_element" style={{ display: 'none' }}></div>
 
             <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -276,9 +235,10 @@ export default function Header() {
                 </div>
             </header>
 
-            {/* إضافة CSS لإخفاء عناصر واجهة ترجمة جوجل */}
+            {/* إضافة CSS لإصلاح مشاكل الترجمة */}
             <style>
                 {`
+                    /* عندما نكون في صفحة الترجمة */
                     .goog-te-banner-frame {
                         display: none !important;
                     }
@@ -299,6 +259,24 @@ export default function Header() {
                     }
                     .skiptranslate {
                         display: none !important;
+                    }
+
+                    /* زر العودة للموقع الأصلي */
+                    #back-to-original {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        z-index: 9999;
+                        padding: 10px 15px;
+                        background-color: #16a34a;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+
+                    #back-to-original:hover {
+                        background-color: #15803d;
                     }
                 `}
             </style>
