@@ -3,29 +3,22 @@
 @tailwind utilities;
 
 
-/* إخفاء واجهة ترجمة جوجل */
 .goog-te-banner-frame {
   display: none !important;
 }
 
 .goog-te-gadget {
   color: transparent !important;
-  font-size: 0 !important;
 }
 
 .goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-}
-
-
-body {
-  top: 0 !important;
-}
-
-.goog-te-menu-value {
-  display: none !important;
+  margin: 0px !important;
 }
 
 .goog-te-menu-frame {
-  z-index: 99999 !important;
+  z-index: 100000 !important;
+}
+
+body {
+  top: 0px !important;
 }

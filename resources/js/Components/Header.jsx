@@ -36,54 +36,76 @@ export default function Header() {
             : "text-gray-700 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium";
     };
 
-    // دالة لترجمة الصفحة باستخدام iframe
-    const translatePage = (langCode) => {
-        setCurrentLang(langCode);
+    // دالة لتحميل أداة ترجمة جوجل
+    const loadGoogleTranslate = () => {
+        // إذا كانت الأداة محملة مسبقاً، لا نحتاج لتحميلها again
+        if (window.google && window.google.translate) return;
 
-        if (langCode === 'en') {
-            // إذا كانت الإنجليزية، نعود للصفحة الأصلية
-            window.location.href = window.location.origin + window.location.pathname;
-            return;
+        const addScript = document.createElement('script');
+        addScript.setAttribute('src', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit');
+        document.body.appendChild(addScript);
+
+        window.googleTranslateElementInit = () => {
+            new window.google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ar,tr',
+                layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        };
+    };
+
+    // دالة لتفعيل الترجمة للغة محددة
+    const translatePage = (langCode) => {
+        // التأكد من تحميل أداة الترجمة أولاً
+        if (!window.google || !window.google.translate) {
+            loadGoogleTranslate();
+
+            // ننتظر حتى يتم تحميل الأداة ثم نغير اللغة
+            const checkInterval = setInterval(() => {
+                if (window.google && window.google.translate) {
+                    clearInterval(checkInterval);
+                    changeLanguage(langCode);
+                }
+            }, 100);
+        } else {
+            changeLanguage(langCode);
         }
 
-        // إنشاء iframe للترجمة
-        const translateUrl = `https://translate.google.com/translate?hl=en&sl=auto&tl=${langCode}&u=${encodeURIComponent(window.location.href)}&sandbox=1`;
-
-        // حفظ اللغة المختارة
+        setIsLangDropdownOpen(false);
+        setCurrentLang(langCode);
         localStorage.setItem('selectedLanguage', langCode);
+    };
 
-        // الانتقال لصفحة الترجمة
-        window.location.href = translateUrl;
+    // دالة لتغيير اللغة مباشرة
+    const changeLanguage = (langCode) => {
+        if (window.google && window.google.translate) {
+            const selectField = document.querySelector('.goog-te-combo');
+            if (selectField) {
+                selectField.value = langCode;
+                selectField.dispatchEvent(new Event('change'));
+            }
+        }
     };
 
     // عند تحميل المكون، نتحقق إذا كانت هناك لغة محفوظة مسبقاً
     useEffect(() => {
         const savedLanguage = localStorage.getItem('selectedLanguage');
-        if (savedLanguage && window.location.hostname !== 'translate.google.com') {
+        if (savedLanguage) {
             setCurrentLang(savedLanguage);
+            // لا نطبق الترجمة تلقائياً عند التحميل
         }
 
-        // إذا كنا في صفحة الترجمة، نضيف بعض الأنماط لتحسين المظهر
-        if (window.location.hostname === 'translate.google.com') {
-            const style = document.createElement('style');
-            style.innerHTML = `
-                .goog-te-banner-frame, .goog-te-menu-frame {
-                    display: none !important;
-                }
-                body {
-                    top: 0 !important;
-                }
-                #google_translate_element {
-                    display: none;
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // تحميل أداة الترجمة عند بدء التحميل
+        loadGoogleTranslate();
     }, []);
 
     return (
         <>
             <FloatingButtons />
+
+            {/* عنصر ترجمة جوجل - مخفي ولكن ضروري للعمل */}
+            <div id="google_translate_element" style={{ display: 'none' }}></div>
 
             <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,6 +220,27 @@ export default function Header() {
                     </nav>
                 </div>
             </header>
+
+            {/* إضافة CSS لإخفاء عناصر واجهة ترجمة جوجل */}
+            <style>
+                {`
+                    .goog-te-banner-frame {
+                        display: none !important;
+                    }
+                    .goog-te-gadget {
+                        color: transparent !important;
+                    }
+                    .goog-te-gadget .goog-te-combo {
+                        margin: 0px !important;
+                    }
+                    .goog-te-menu-frame {
+                        z-index: 100000 !important;
+                    }
+                    body {
+                        top: 0px !important;
+                    }
+                `}
+            </style>
         </>
     );
 }
