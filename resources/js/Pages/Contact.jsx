@@ -48,10 +48,9 @@ const Contact = () => {
                 <title key="title">{t("contact")}</title>
             </Head>
 
-            <header className="contact-header">
-                <div className="container">
-                    <h1>{t("contact header title")}</h1>
-                    <p>{t("contact header description")}</p>
+            <header className="contact-header justify-center items-center flex mt-10">
+                <div className="container  ">
+                    <h1>{t("Contact Us")}</h1>
                 </div>
             </header>
 
@@ -67,7 +66,7 @@ const Contact = () => {
                                     <PhoneIcon className="h-6 w-6" />
                                 </div>
                                 <div className="info-content">
-                                    <h3>{t("phone whatsapp title")}</h3>
+                                    <h3>{t("phone whatsapp ")}</h3>
                                     <p>
                                         {t("phone main")}:{" "}
                                         <strong>+90 539 695 4204</strong>
@@ -84,16 +83,7 @@ const Contact = () => {
                                     <MapPinIcon className="h-6 w-6" />
                                 </div>
                                 <div className="info-content">
-                                    <h3>{t("office location title")}</h3>
-                                    <p>
-                                        <strong>{t("office name")}</strong>
-                                        <br />
-                                        {t("office address line1")}
-                                        <br />
-                                        {t("office address line2")}
-                                        <br />
-                                        {t("office address line3")}
-                                    </p>
+                                    <h3>{t("Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye(Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye)")}</h3>
                                 </div>
                             </div>
                             <div className="info-item">
@@ -130,16 +120,11 @@ const Contact = () => {
                         <div className="emergency-icon">
                             <ExclamationTriangleIcon className="h-12 w-12 mx-auto" />
                         </div>
-                        <h2 className="emergency-title">
-                            {t("emergency service 24 7 title")}
-                        </h2>
+
                         <div className="emergency-phone">
                             <PhoneIcon className="h-8 w-8 inline-block mr-2" />{" "}
-                            (555) EMERGENCY
+                            +90 539 695 4204
                         </div>
-                        <p className="emergency-text">
-                            {t("emergency service description")}
-                        </p>
                         <a href="https://wa.me/905380833252" className="btn">
                             {t("call now button")}
                         </a>
