@@ -15,9 +15,11 @@ class Cors
      */
     public function handle(Request $request, Closure $next): Response
     {
+        Log::info('Cors middleware triggered');
         $response = $next($request);
 
         $origin = $request->headers->get('Origin');
+        Log::info('Request Origin: ' . $origin);
 
         if ($origin) {
             $response->headers->set('Access-Control-Allow-Origin', $origin);
@@ -25,6 +27,8 @@ class Cors
             $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, X-CSRF-TOKEN');
             $response->headers->set('Access-Control-Allow-Credentials', 'true');
         }
+
+        Log::info('Response Headers: ', $response->headers->all());
 
         return $response;
     }
