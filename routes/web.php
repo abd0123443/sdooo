@@ -66,12 +66,20 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
-
-Route::get('/portfolio', function () {
-    $categories = Category::with('products')->get();
-    return Inertia::render('Portfolio', [
-        'categories' => $categories,
-    ]);
+Route::get('/Building_Entrance_Door', function () {
+    return Inertia::render('Building_Entrance_Door');
 });
+Route::get('/Fire_Door', function () {
+    return Inertia::render('Fire_Door');
+});
+Route::get('/Villa_Doors', function () {
+    return Inertia::render('Villa_Doors');
+});
+Route::get('/Steel_Door', function () {
+    return Inertia::render('Steel_Door');
+});
+
+
+
 
 require __DIR__ . '/auth.php';

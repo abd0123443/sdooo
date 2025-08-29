@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Transformation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class TransformationController extends Controller
@@ -18,24 +17,26 @@ class TransformationController extends Controller
     public function store(Request $request)
     {
         try {
-            $valedator = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'description' => 'required|string',
                 'work' => 'required|string',
             ]);
-            if ($valedator->fails()) {
+
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => 'error',
-                    'errors' => $valedator->errors()
+                    'errors' => $validator->errors()
                 ], 422);
             }
+
             $transformation = Transformation::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'work' => $request->work,
-
             ]);
-            return response()->json(['message' => 'add Customer Review successfully', 'data' => $transformation]);
+
+            return response()->json(['message' => 'Add Customer Review successfully', 'data' => $transformation]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
@@ -47,22 +48,25 @@ class TransformationController extends Controller
     public function update(Request $request, Transformation $transformation)
     {
         try {
-            $valedator = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'description' => 'required|string',
                 'work' => 'required|string',
             ]);
-            if ($valedator->fails()) {
+
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => 'error',
-                    'errors' => $valedator->errors()
+                    'errors' => $validator->errors()
                 ], 422);
             }
 
-            $transformation->name = $request->name;
-            $transformation->description = $request->description;
-            $transformation->work = $request->work;
-            $transformation->save();
+            $transformation->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'work' => $request->work,
+            ]);
+
             return response()->json(['message' => 'Edit successfully']);
         } catch (\Exception $e) {
             return response()->json([
@@ -72,9 +76,8 @@ class TransformationController extends Controller
         }
     }
 
-    public function destroy(Request $request, Transformation $transformation)
+    public function destroy(Transformation $transformation)
     {
-
         $transformation->delete();
         return response()->json(['message' => 'Customer Review deleted successfully']);
     }

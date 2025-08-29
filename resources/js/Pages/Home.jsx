@@ -7,6 +7,7 @@ import Reviews from "@/Components/StudentReviews";
 import Faq from "@/Components/Faq";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import FloatingButtons from "@/Components/FloatingButtons";
 
 export default function Home() {
     const [categories, setCategories] = useState([]);
@@ -40,6 +41,7 @@ export default function Home() {
     return (
         <>
             <Header />
+
             <Head>
                 <title key="title">
                     {t(
@@ -189,6 +191,141 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+                {/* Our Services */}
+                <section className="py-16 px-4 bg-gray-100">
+                    <div className="container mx-auto">
+                        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                            {t("Our Comprehensive Services")}
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {/* Service 1 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-door-open"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Residential Door Installation")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "Expert installation of entry doors, patio doors, interior doors, and garage doors for homes of all styles."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+
+                            {/* Service 2 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-building"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Commercial Door Solutions")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "Secure and durable door installations for businesses, offices, and commercial properties."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+
+                            {/* Service 3 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-tools"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Door Repair & Maintenance")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "Professional repair services for sticking, squeaking, or damaged doors to restore functionality."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+
+                            {/* Service 4 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-lock"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Security Door Installation")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "High-security door solutions including steel doors, reinforced frames, and advanced locking systems."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+
+                            {/* Service 5 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-paint-roller"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Door Finishing & Customization")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "Custom staining, painting, and hardware selection to match your home's aesthetic."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+
+                            {/* Service 6 */}
+                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                                <div className="text-green-600 text-4xl mb-4">
+                                    <i className="fas fa-undo-alt"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Automatic Door Systems")}
+                                </h3>
+                                <p className="text-gray-600 mb-4">
+                                    {t(
+                                        "Installation of sliding, swinging, and revolving automatic doors for accessibility and convenience."
+                                    )}
+                                </p>
+                                <a
+                                    href="https://wa.me/905380833252"
+                                    className="text-green-600 font-medium hover:text-green-800"
+                                >
+                                    {t("Learn More →")}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 {/* Types of Doors */}
                 <section className="py-16 px-4 bg-white">
@@ -196,34 +333,56 @@ export default function Home() {
                         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
                             {t("Types of Doors We Install")}
                         </h2>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {categories.map((category) => (
-                                <div
-                                    key={category.id}
-                                    className="door-card bg-white rounded-lg overflow-hidden shadow-md border border-gray-200 transition duration-300"
-                                >
-                                    <img
-                                        src={`${app_url}/storage/${category.image}`}
-                                        alt={category.name}
-                                        className="w-full h-48 object-cover"
-                                    />
-                                    <div className="p-5">
-                                        <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                                            {category.name}
-                                        </h3>
-                                        <p className="text-gray-600 mb-4">
-                                            {category.description}
-                                        </p>
-                                        <Link
-                                            href="/portfolio"
-                                            className="text-green-600 font-medium hover:text-green-800"
-                                        >
-                                            {t("View Options →")}
-                                        </Link>
+                            {categories.map((category) => {
+                                // دالة لتحويل الاسم لرابط
+                                const getCategoryLink = (name) => {
+                                    switch (name) {
+                                        case "Building Entrance Door":
+                                            return "/Building_Entrance_Door";
+                                        case "Fire Door":
+                                            return "/Fire_Door";
+                                        case "Villa Doors":
+                                            return "/Villa_Doors";
+                                        case "Steel Door":
+                                            return "/Steel_Door";
+                                        default:
+                                            return "/portfolio"; // رابط افتراضي لو الاسم غير معروف
+                                    }
+                                };
+
+                                return (
+                                    <div
+                                        key={category.id}
+                                        className="door-card bg-white rounded-lg overflow-hidden shadow-md border border-gray-200 transition duration-300"
+                                    >
+                                        <img
+                                            src={`${app_url}/storage/${category.image}`}
+                                            alt={category.name}
+                                            className="w-full h-48 object-cover"
+                                        />
+                                        <div className="p-5">
+                                            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                                                {category.name}
+                                            </h3>
+                                            <p className="text-gray-600 mb-4">
+                                                {category.description}
+                                            </p>
+                                            <Link
+                                                href={getCategoryLink(
+                                                    category.name
+                                                )}
+                                                className="text-green-600 font-medium hover:text-green-800"
+                                            >
+                                                {t("View Options →")}
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
+
                         <div className="text-center mt-10">
                             <Link
                                 href="/portfolio"
@@ -231,6 +390,159 @@ export default function Home() {
                             >
                                 {t("View All Door Types")}
                             </Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Door Installation Process */}
+                <section className="py-16 px-4 bg-gray-100">
+                    <div className="container mx-auto">
+                        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                            {t("Our Door Installation Process")}
+                        </h2>
+
+                        <div className="relative">
+                            {/* Vertical timeline line */}
+                            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-600"></div>
+
+                            {/* Steps */}
+                            {[1, 2, 3, 4, 5].map((step) => {
+                                const isEven = step % 2 === 0;
+                                const titles = [
+                                    "Consultation & Measurement",
+                                    "Door Selection",
+                                    "Preparation & Removal",
+                                    "Professional Installation",
+                                    "Final Inspection",
+                                ];
+                                const descriptions = [
+                                    "Our expert will visit your property to assess your needs, take precise measurements, and discuss design options.",
+                                    "Choose from our extensive catalog of premium doors, or request a custom design tailored to your specifications.",
+                                    "We carefully remove your old door, prepare the opening, and ensure proper alignment for the new installation.",
+                                    "Our certified technicians install your new door with precision, ensuring perfect operation and weatherproofing.",
+                                    "We conduct a thorough quality check and walk you through the features and maintenance of your new door.",
+                                ];
+
+                                return (
+                                    <div
+                                        key={step}
+                                        className={`mb-12 flex flex-col lg:flex-row items-center lg:items-start ${
+                                            isEven ? "lg:flex-row-reverse" : ""
+                                        }`}
+                                    >
+                                        {/* Text */}
+                                        <div
+                                            className={`lg:w-1/2 px-4 lg:px-8 mb-6 lg:mb-0 text-${
+                                                isEven ? "left" : "right"
+                                            }`}
+                                        >
+                                            <h3 className="text-2xl font-semibold mb-3 text-green-700">
+                                                {t(
+                                                    `${step}. ${
+                                                        titles[step - 1]
+                                                    }`
+                                                )}
+                                            </h3>
+                                            <p className="text-gray-600">
+                                                {t(descriptions[step - 1])}
+                                            </p>
+                                        </div>
+
+                                        {/* Circle number */}
+                                        <div className="lg:w-1/2 flex justify-center lg:justify-center">
+                                            <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center shadow-lg border-4 border-green-600">
+                                                <span className="text-xl font-bold text-gray-800">
+                                                    {step}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Why Choose Us */}
+                <section className="py-16 px-4 gradient-bg text-white">
+                    <div className="container mx-auto">
+                        <h2 className="text-3xl font-bold text-center mb-12">
+                            {t("Why Choose Our Door Installation Services")}
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {/* Reason 1 */}
+                            <div className="text-center p-6 bg-black bg-opacity-20 rounded-lg">
+                                <div className="text-5xl mb-4 text-green-400">
+                                    <i className="fas fa-award"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Certified Experts")}
+                                </h3>
+                                <p className="text-gray-300">
+                                    {t(
+                                        "Our installers are factory-trained and certified by leading door manufacturers."
+                                    )}
+                                </p>
+                            </div>
+
+                            {/* Reason 2 */}
+                            <div className="text-center p-6 bg-black bg-opacity-20 rounded-lg">
+                                <div className="text-5xl mb-4 text-green-400">
+                                    <i className="fas fa-calendar-check"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("On-Time Completion")}
+                                </h3>
+                                <p className="text-gray-300">
+                                    {t(
+                                        "We respect your time with guaranteed project completion dates."
+                                    )}
+                                </p>
+                            </div>
+
+                            {/* Reason 3 */}
+                            <div className="text-center p-6 bg-black bg-opacity-20 rounded-lg">
+                                <div className="text-5xl mb-4 text-green-400">
+                                    <i className="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Lifetime Warranty")}
+                                </h3>
+                                <p className="text-gray-300">
+                                    {t(
+                                        "We stand behind our work with industry-leading warranty coverage."
+                                    )}
+                                </p>
+                            </div>
+
+                            {/* Reason 4 */}
+                            <div className="text-center p-6 bg-black bg-opacity-20 rounded-lg">
+                                <div className="text-5xl mb-4 text-green-400">
+                                    <i className="fas fa-dollar-sign"></i>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">
+                                    {t("Price Match")}
+                                </h3>
+                                <p className="text-gray-300">
+                                    {t(
+                                        "We'll match any competitor's price for identical products and services."
+                                    )}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mt-12 text-center">
+                            <div className="inline-flex items-center bg-black bg-opacity-30 rounded-full py-3 px-6">
+                                <i className="fas fa-phone-alt text-green-400 mr-3"></i>
+                                <div>
+                                    <p className="text-sm text-gray-300">
+                                        {t("Call us for a free consultation")}
+                                    </p>
+                                    <p className="text-xl font-bold">
+                                        {t("(555) 123-4567")}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

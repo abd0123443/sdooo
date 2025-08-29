@@ -15,7 +15,7 @@ export default function Footer() {
                                 <img src="/icon.jpeg" alt="" />
                             </div>
                             <span className="text-2xl font-bold">
-                                Medine Steel Doors
+                                {t('Medine Steel Doors')}
                             </span>
                         </div>
                         <p className="text-gray-300 mb-6 max-w-md">
