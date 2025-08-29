@@ -96,6 +96,12 @@ export default function Header() {
                                 {t("Contact")}
                             </Link>
                             <Link
+                                href="/about_us"
+                                className={getLinkClass("/about_us") + " block"}
+                            >
+                                {t("About Au")}
+                            </Link>
+                            <Link
                                 href="/Building_Entrance_Door"
                                 className={
                                     getLinkClass("/Building_Entrance_Door") +
@@ -110,7 +116,7 @@ export default function Header() {
                                     getLinkClass("/Fire_Door") + " block"
                                 }
                             >
-                                {t("Villa Doors")}
+                                {t("Fire Door")}
                             </Link>
                             <Link
                                 href="/Villa_Doors"
@@ -118,7 +124,7 @@ export default function Header() {
                                     getLinkClass("/Villa_Doors") + " block"
                                 }
                             >
-                                {t("Fire Door")}
+                                {t("Villa Doors")}
                             </Link>
                             <Link
                                 href="/Steel_Door"
@@ -244,10 +250,10 @@ export default function Header() {
                             {t("Home")}
                         </Link>
                         <Link
-                            href="/portfolio"
-                            className={getLinkClass("/portfolio") + " block"}
+                            href="/about_us"
+                            className={getLinkClass("/about_us") + " block"}
                         >
-                            {t("Portfolio")}
+                            {t("About Au")}
                         </Link>
                         <Link
                             href="/contact"

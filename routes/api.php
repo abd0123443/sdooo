@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AbouteController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\TransformationController;
@@ -37,5 +38,16 @@ Route::get('/transformations', [TransformationController::class, 'index']);
 Route::post('/transformations', [TransformationController::class, 'store']);
 Route::post('/transformations/{transformation}', [TransformationController::class, 'update']);
 Route::delete('/transformations/{transformation}', [TransformationController::class, 'destroy']);
+
+
+
+Route::get('/abouts', [AbouteController::class, 'index']);
+Route::post('/abouts', [AbouteController::class, 'store']);
+Route::post('/abouts/{aboute}', [AbouteController::class, 'update']);
+Route::delete('/abouts/{aboute}', [AbouteController::class, 'destroy']);
+
+
+
+
 
 

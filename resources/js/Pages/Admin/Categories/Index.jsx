@@ -26,13 +26,13 @@ export default function CategoriesIndex() {
         name: "",
         description: "",
         image: "",
-        pdf_file: null,
+
     });
     const [newCategory, setNewCategory] = useState({
         name: "",
         image: "",
         description: "",
-        pdf_file: null,
+        
     });
     const [errors, setErrors] = useState({});
 

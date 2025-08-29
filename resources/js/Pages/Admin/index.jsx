@@ -4,6 +4,7 @@ import AdminLayout from './layout';
 import CategoriesTable from './components/CategoriesTable';
 import TransformationTable from './components/TransformationTable';
 import ProductsTable from './components/ProductsTable';
+import About_Table from './components/About_Table';
 
 const stats = [
     {
@@ -59,6 +60,7 @@ export default function Index() {
               <TransformationTable />
 
               <ProductsTable />
+              <About_Table />
 
 
              {/* Animations */}

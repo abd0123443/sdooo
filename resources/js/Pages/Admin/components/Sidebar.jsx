@@ -9,12 +9,14 @@ import {
   Bars3Icon,
   TagIcon,
 } from '@heroicons/react/24/outline';
+import { DocumentTextIcon } from '@heroicons/react/24/solid';
 
 const navItems = [
   { name: 'Dashboard', icon: HomeIcon, path: '/admin' },
   { name: 'Categories', icon: TagIcon, path: '/admin/categories' },
   { name: 'Products', icon: BookOpenIcon, path: '/admin/products' },
   { name: 'Customer Review', icon: ClipboardDocumentListIcon, path: '/admin/transformations' },
+  { name: 'About Us', icon: DocumentTextIcon, path: '/admin/Aboutes' },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {

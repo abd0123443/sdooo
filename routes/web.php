@@ -49,6 +49,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/transformations', function () {
         return Inertia::render('Admin/Transformations/TransformationsIndex');
     });
+    Route::get('/admin/Aboutes', function () {
+        return Inertia::render('Admin/About_Us/Index');
+    });
 });
 
 
@@ -78,7 +81,9 @@ Route::get('/Villa_Doors', function () {
 Route::get('/Steel_Door', function () {
     return Inertia::render('Steel_Door');
 });
-
+Route::get('/about_us', function () {
+    return Inertia::render('About_Us');
+});
 
 
 

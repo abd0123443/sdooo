@@ -336,7 +336,6 @@ export default function Home() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {categories.map((category) => {
-                                // دالة لتحويل الاسم لرابط
                                 const getCategoryLink = (name) => {
                                     switch (name) {
                                         case "Building Entrance Door":
@@ -348,12 +347,13 @@ export default function Home() {
                                         case "Steel Door":
                                             return "/Steel_Door";
                                         default:
-                                            return "/portfolio"; // رابط افتراضي لو الاسم غير معروف
+                                            return "/";
                                     }
                                 };
 
                                 return (
-                                    <div
+                                    <Link
+                                        href={getCategoryLink(category.name)}
                                         key={category.id}
                                         className="door-card bg-white rounded-lg overflow-hidden shadow-md border border-gray-200 transition duration-300"
                                     >
@@ -369,16 +369,13 @@ export default function Home() {
                                             <p className="text-gray-600 mb-4">
                                                 {category.description}
                                             </p>
-                                            <Link
-                                                href={getCategoryLink(
-                                                    category.name
-                                                )}
+                                            <button
                                                 className="text-green-600 font-medium hover:text-green-800"
                                             >
                                                 {t("View Options →")}
-                                            </Link>
+                                            </button>
                                         </div>
-                                    </div>
+                                    </Link>
                                 );
                             })}
                         </div>
