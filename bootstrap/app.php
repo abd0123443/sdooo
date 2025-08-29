@@ -23,6 +23,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => IsAdmin::class,
         ]);
+            $middleware->web(append: [
+        \App\Http\Middleware\Cors::class,
+    ]);
+
+    $middleware->api(append: [
+        \App\Http\Middleware\Cors::class,
+    ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
