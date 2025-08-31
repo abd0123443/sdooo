@@ -537,7 +537,7 @@ export default function Home() {
                                         {t("Call us for a free consultation")}
                                     </p>
                                     <p className="text-xl font-bold">
-                                        {t("(555) 123-4567")}
+                                        {t("+90 539 695 4204")}
                                     </p>
                                 </div>
                             </div>
