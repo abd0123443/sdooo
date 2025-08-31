@@ -338,13 +338,13 @@ export default function Home() {
                             {categories.map((category) => {
                                 const getCategoryLink = (name) => {
                                     switch (name) {
-                                        case "Building Entrance Door":
+                                        case "Bina Giriş Kapısı":
                                             return "/Building_Entrance_Door";
-                                        case "Fire Door":
+                                        case "Yangın kapısı":
                                             return "/Fire_Door";
-                                        case "Villa Doors":
+                                        case "Villa kapıları":
                                             return "/Villa_Doors";
-                                        case "Steel Door":
+                                        case "çelik kapısı":
                                             return "/Steel_Door";
                                         default:
                                             return "/";
@@ -381,12 +381,13 @@ export default function Home() {
                         </div>
 
                         <div className="text-center mt-10">
-                            <Link
-                                href="/portfolio"
+                            <a
+                                target="_blank"
+                                href="https://wa.me/905380833252"
                                 className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
                             >
                                 {t("View All Door Types")}
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -574,12 +575,13 @@ export default function Home() {
                             ))}
                         </div>
                         <div className="text-center mt-10">
-                            <Link
-                                href="/portfolio"
+                            <a
+                                target="_blank"
+                                href="https://wa.me/905380833252"
                                 className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
                             >
                                 {t("View Full Portfolio")}
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>
