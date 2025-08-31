@@ -80,7 +80,7 @@ const Villa_Doors = () => {
                         </h2>
 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {products
-        .filter((product) => product.category.name === "Villa Doors")
+        .filter((product) => product.category.id ===2 )
         .map((product) => (
             <div
                 key={product.id}
