@@ -340,15 +340,15 @@ export default function Home() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {categories.map((category) => {
-                                const getCategoryLink = (name) => {
-                                    switch (name) {
-                                        case "Bina Giriş Kapısı":
+                                const getCategoryLink = (id) => {
+                                    switch (id) {
+                                        case 3:
                                             return "/Building_Entrance_Door";
-                                        case "Yangın kapısı":
+                                        case 5 :
                                             return "/Fire_Door";
-                                        case "Villa kapıları":
+                                        case 2:
                                             return "/Villa_Doors";
-                                        case "çelik kapısı":
+                                        case 4:
                                             return "/Steel_Door";
                                         default:
                                             return "/";
@@ -357,7 +357,7 @@ export default function Home() {
 
                                 return (
                                     <Link
-                                        href={getCategoryLink(category.name)}
+                                        href={getCategoryLink(category.id)}
                                         key={category.id}
                                         className="door-card bg-white rounded-lg overflow-hidden shadow-md border border-gray-200 transition duration-300"
                                     >
