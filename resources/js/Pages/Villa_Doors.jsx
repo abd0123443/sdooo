@@ -29,9 +29,7 @@ const Villa_Doors = () => {
             <Header />
             <Head>
                 <title key="title">
-                    {t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
-                    )}
+                    {t("Medine Steel Doors - Our Portfolio of Steel Door Installations")}
                 </title>
                 <meta
                     key="desc"
@@ -40,37 +38,17 @@ const Villa_Doors = () => {
                         "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
                     )}
                 />
-                <meta
-                    key="ogtitle"
-                    property="og:title"
-                    content={t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
-                    )}
-                />
-                <meta
-                    key="ogdesc"
-                    property="og:description"
-                    content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
-                    )}
-                />
-                <meta
-                    key="ogimage"
-                    property="og:image"
-                    content={`${app_url}/icon.jpeg`}
-                />
-                <meta
-                    key="ogurl"
-                    property="og:url"
-                    content={`${app_url}/portfolio`}
-                />
-                <meta
-                    key="keywords"
-                    name="keywords"
-                    content={t(
-                        "steel door portfolio, door installation projects, completed door works, security door gallery, modern door designs, Medine Steel Doors projects"
-                    )}
-                />
+                <meta key="ogtitle" property="og:title" content={t(
+                    "Medine Steel Doors - Our Portfolio of Steel Door Installations"
+                )} />
+                <meta key="ogdesc" property="og:description" content={t(
+                    "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                )} />
+                <meta key="ogimage" property="og:image" content={`${app_url}/icon.jpeg`} />
+                <meta key="ogurl" property="og:url" content={`${app_url}/portfolio`} />
+                <meta key="keywords" name="keywords" content={t(
+                    "steel door portfolio, door installation projects, completed door works, security door gallery, modern door designs, Medine Steel Doors projects"
+                )} />
             </Head>
 
             <section className="py-16 px-4 bg-gray-100 mt-10">
@@ -113,15 +91,21 @@ const Villa_Doors = () => {
 
             {/* Modal */}
             {modalImage && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-                    onClick={() => setModalImage(null)}
-                >
-                    <img
-                        src={modalImage}
-                        alt="Large view"
-                        className="max-w-full max-h-full rounded-lg shadow-lg"
-                    />
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+                    <div className="relative">
+                        {/* زر الإغلاق */}
+                        <button
+                            onClick={() => setModalImage(null)}
+                            className="absolute top-2 right-2 text-white text-3xl font-bold z-50"
+                        >
+                            &times;
+                        </button>
+                        <img
+                            src={modalImage}
+                            alt="Large view"
+                            className="max-w-full max-h-[90vh] rounded-lg shadow-lg"
+                        />
+                    </div>
                 </div>
             )}
 

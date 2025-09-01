@@ -202,26 +202,7 @@ export default function Home() {
                             {t("Our Comprehensive Services")}
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {/* Service 1 */}
-                            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                                <div className="text-green-600 text-4xl mb-4">
-                                    <i className="fas fa-door-open"></i>
-                                </div>
-                                <h3 className="text-xl font-semibold mb-3">
-                                    {t("Residential Door Installation")}
-                                </h3>
-                                <p className="text-gray-600 mb-4">
-                                    {t(
-                                        "Expert installation of entry doors, patio doors, interior doors, and garage doors for homes of all styles."
-                                    )}
-                                </p>
-                                <a
-                                    href="https://wa.me/905380833252"
-                                    className="text-green-600 font-medium hover:text-green-800"
-                                >
-                                    {t("Learn More →")}
-                                </a>
-                            </div>
+
 
                             {/* Service 2 */}
                             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
@@ -550,45 +531,67 @@ export default function Home() {
                 </section>
 
                 {/* Products */}
-                <section id="ourWork" className="py-16 px-4 bg-gray-100">
-                    <div className="container mx-auto">
-                        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                            {t("Our Recent Door Installation Projects")}
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {products.map((product) => (
-                                <div
-                                    key={product.id}
-                                    className="relative group overflow-hidden rounded-lg shadow-md"
-                                >
-                                    <img
-                                        src={`${app_url}/storage/${product.image}`}
-                                        alt={product.title}
-                                        className="w-full h-64 object-cover transition duration-500 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                                    <div className="absolute bottom-0 left-0 p-6 w-full">
-                                        <h3 className="text-xl font-bold text-white mb-2">
-                                            {product.title}
-                                        </h3>
-                                        <p className="text-gray-300">
-                                            {product.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="text-center mt-10">
-                            <a
-                                target="_blank"
-                                href="https://wa.me/905380833252"
-                                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+            <section id="ourWork" className="py-16 px-4 bg-gray-100">
+                <div className="container mx-auto">
+                    <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                        {t("Our Recent Door Installation Projects")}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {products.map((product) => (
+                            <div
+                                key={product.id}
+                                className="relative group overflow-hidden rounded-lg shadow-md cursor-pointer"
+                                onClick={() => setModalImage(`${app_url}/storage/${product.image}`)}
                             >
-                                {t("View Full Portfolio")}
-                            </a>
+                                <img
+                                    src={`${app_url}/storage/${product.image}`}
+                                    alt={product.title}
+                                    className="w-full h-[450px] object-contain transition duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                                <div className="absolute bottom-0 left-0 p-6 w-full">
+                                    <h3 className="text-xl font-bold text-white mb-2">
+                                        {product.title}
+                                    </h3>
+                                    <p className="text-gray-300">
+                                        {product.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="text-center mt-10">
+                        <a
+                            target="_blank"
+                            href="https://wa.me/905380833252"
+                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+                        >
+                            {t("View Full Portfolio")}
+                        </a>
+                    </div>
+                </div>
+
+                {/* Modal */}
+                {modalImage && (
+                    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+                        <div className="relative">
+                            {/* زر الإغلاق */}
+                            <button
+                                onClick={() => setModalImage(null)}
+                                className="absolute top-2 right-2 text-white text-3xl font-bold z-50"
+                            >
+                                &times;
+                            </button>
+                            <img
+                                src={modalImage}
+                                alt="Large view"
+                                className="max-w-full max-h-[90vh] rounded-lg shadow-lg"
+                            />
                         </div>
                     </div>
-                </section>
+                )}
+            </section>
+
 
                 <Reviews />
                 <Faq />
