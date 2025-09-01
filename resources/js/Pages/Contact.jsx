@@ -83,7 +83,11 @@ const Contact = () => {
                                     <MapPinIcon className="h-6 w-6" />
                                 </div>
                                 <div className="info-content">
-                                    <h3>{t("Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye(Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye)")}</h3>
+                                    <h3>
+                                        {t(
+                                            "Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye(Mecidiye, Fatih Blv. No:444, 34930 Sultanbeyli/İstanbul, Türkiye)"
+                                        )}
+                                    </h3>
                                 </div>
                             </div>
                             <div className="info-item">
@@ -148,17 +152,15 @@ const Contact = () => {
                         className="map-container animated"
                         ref={(el) => (animatedElements.current[3] = el)}
                     >
-                        <div className="map-placeholder flex items-center gap-2">
-                            <MapIcon className="h-12 w-12" />
-                            <a
-                                href="https://www.google.com/maps/place/Mecidiye,+Fatih+Blv.+No:444,+34930+Sultanbeyli%2F%C4%B0stanbul,+%D8%AA%D8%B1%D9%83%D9%8A%D8%A7%E2%80%AD/@40.9593618,29.2973416,17z/data=!3m1!4b1!4m6!3m5!1s0x14cad093945e97b5:0x618685e579189766!8m2!3d40.9593578!4d29.2947667!16s%2Fg%2F11b8ygy1xq?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:underline"
-                            >
-                                {t("interactive map location")}
-                            </a>
-                        </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12042.668689941243!2d29.2947667!3d40.9593578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cad093945e97b5%3A0x618685e579189766!2sSultanbeyli%2Fİstanbul!5e0!3m2!1sen!2str!4v1693500000000"
+                            width="100%"
+                            height="400"
+                            style={{ border: 0, borderRadius: "12px" }}
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
                     </div>
                 </div>
             </section>

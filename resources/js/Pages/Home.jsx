@@ -104,12 +104,16 @@ export default function Home() {
                                 >
                                     {t("get_free_estimate")}
                                 </a>
-                                <Link
-                                    href="/portfolio"
+                                <button
+                                    onClick={() =>{
+                                        document.getElementById("ourWork").scrollIntoView({
+                                            behavior:"smooth"
+                                        })
+                                    }}
                                     className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
                                 >
                                     {t("view_our_work")}
-                                </Link>
+                                </button>
                             </div>
                         </div>
                         <div className="md:w-1/2 flex justify-center">
@@ -546,7 +550,7 @@ export default function Home() {
                 </section>
 
                 {/* Products */}
-                <section className="py-16 px-4 bg-gray-100">
+                <section id="ourWork" className="py-16 px-4 bg-gray-100">
                     <div className="container mx-auto">
                         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
                             {t("Our Recent Door Installation Projects")}
