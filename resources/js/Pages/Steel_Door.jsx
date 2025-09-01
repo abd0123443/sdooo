@@ -1,16 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import { Head, usePage } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import {Link} from "@inertiajs/react";
 
 const Steel_Door = () => {
     const { app_url } = usePage().props;
     const { t } = useTranslation();
     const [products, setProducts] = useState([]);
+    const [modalImage, setModalImage] = useState(null); // صورة المودال
+
     const showAllProducts = async () => {
         try {
             const response = await axios.get(`${app_url}/api/products`);
@@ -22,7 +22,6 @@ const Steel_Door = () => {
 
     useEffect(() => {
         showAllProducts();
-
     }, []);
 
     return (
@@ -30,9 +29,7 @@ const Steel_Door = () => {
             <Header />
             <Head>
                 <title key="title">
-                    {t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
-                    )}
+                    {t("Medine Steel Doors - Our Portfolio of Steel Door Installations")}
                 </title>
                 <meta
                     key="desc"
@@ -73,39 +70,59 @@ const Steel_Door = () => {
                     )}
                 />
             </Head>
-                <section className="py-16 px-4 bg-gray-100 mt-10">
-                    <div className="container mx-auto">
-                        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-                            {t("Steel Door")}
-                        </h2>
-<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {products
-        .filter((product) => product.category.id === 4)
-        .map((product) => (
-            <div
-                key={product.id}
-                className="relative group overflow-hidden rounded-lg shadow-md"
-            >
-                <img
-                    src={`${app_url}/storage/${product.image}`}
-                    alt={product.title}
-                    className="w-full h-80 object-cover transition duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                <div className="absolute bottom-0 left-0 p-4 w-full">
-                    <h3 className="text-lg font-bold text-white mb-1">
-                        {product.title}
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                        {product.description}
-                    </p>
-                </div>
-            </div>
-        ))}
-</div>
 
+            <section className="py-16 px-4 bg-gray-100 mt-10">
+                <div className="container mx-auto">
+                    <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+                        {t("Steel Door")}
+                    </h2>
+
+                    {/* Grid for desktop, scrollable row for mobile */}
+                    <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-x-auto md:overflow-x-visible flex md:block">
+                        {products
+                            .filter((product) => product.category.id === 4)
+                            .map((product) => (
+                                <div
+                                    key={product.id}
+                                    className="relative group overflow-hidden rounded-lg shadow-md min-w-[250px] cursor-pointer flex-shrink-0"
+                                    onClick={() =>
+                                        setModalImage(`${app_url}/storage/${product.image}`)
+                                    }
+                                >
+                                    <img
+                                        src={`${app_url}/storage/${product.image}`}
+                                        alt={product.title}
+                                        className="w-full h-80 object-cover transition duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                                    <div className="absolute bottom-0 left-0 p-4 w-full">
+                                        <h3 className="text-lg font-bold text-white mb-1">
+                                            {product.title}
+                                        </h3>
+                                        <p className="text-gray-200 text-sm">
+                                            {product.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                     </div>
-                </section>
+                </div>
+            </section>
+
+            {/* Modal */}
+            {modalImage && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                    onClick={() => setModalImage(null)}
+                >
+                    <img
+                        src={modalImage}
+                        alt="Large view"
+                        className="max-w-full max-h-full rounded-lg shadow-lg"
+                    />
+                </div>
+            )}
+
             <Footer />
         </>
     );

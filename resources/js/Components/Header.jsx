@@ -273,13 +273,13 @@ export default function Header() {
                             href="/Fire_Door"
                             className={getLinkClass("/Fire_Door") + " block"}
                         >
-                            {t("Villa Doors")}
+                            {t("Fire Door")}
                         </Link>
                         <Link
                             href="/Villa_Doors"
                             className={getLinkClass("/Villa_Doors") + " block"}
                         >
-                            {t("Fire Door")}
+                            {t("Villa Doors")}
                         </Link>
                         <Link
                             href="/Steel_Door"
