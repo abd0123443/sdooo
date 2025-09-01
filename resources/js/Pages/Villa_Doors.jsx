@@ -79,14 +79,14 @@ const Villa_Doors = () => {
                         {t("Villa Doors")}
                     </h2>
 
-                    {/* Grid for desktop, scrollable row for mobile */}
-                    <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-x-auto md:overflow-x-visible flex md:block">
+                    {/* Grid responsive: 1 col mobile, 3 cols tablet, 4 cols desktop */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {products
                             .filter((product) => product.category.id === 2)
                             .map((product) => (
                                 <div
                                     key={product.id}
-                                    className="relative group overflow-hidden rounded-lg shadow-md min-w-[250px] cursor-pointer flex-shrink-0"
+                                    className="relative group overflow-hidden rounded-lg shadow-md cursor-pointer"
                                     onClick={() =>
                                         setModalImage(`${app_url}/storage/${product.image}`)
                                     }
@@ -94,7 +94,7 @@ const Villa_Doors = () => {
                                     <img
                                         src={`${app_url}/storage/${product.image}`}
                                         alt={product.title}
-                                        className="w-full h-80 object-cover transition duration-500 group-hover:scale-110"
+                                        className="w-full h-[450px] object-contain transition duration-500 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
                                     <div className="absolute bottom-0 left-0 p-4 w-full">
