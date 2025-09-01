@@ -14,6 +14,7 @@ export default function Home() {
     const [products, setProducts] = useState([]);
     const { t } = useTranslation();
     const { app_url } = usePage().props;
+    const [modalImage, setModalImage] = useState(null);
 
     const showAllCategories = async () => {
         try {
