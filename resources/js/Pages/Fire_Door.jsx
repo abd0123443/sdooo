@@ -91,12 +91,15 @@ const Fire_Door = () => {
 
             {/* Modal */}
             {modalImage && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-                    <div className="relative">
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                    onClick={() => setModalImage(null)} // الضغط على الخلفية يغلق المودال
+                >
+                    <div className="relative" onClick={(e) => e.stopPropagation()}>
                         {/* زر الإغلاق */}
                         <button
                             onClick={() => setModalImage(null)}
-                            className="absolute top-2 right-2 text-white text-3xl font-bold z-50"
+                            className="absolute top-2 right-2 text-black text-3xl font-bold z-50"
                         >
                             &times;
                         </button>
