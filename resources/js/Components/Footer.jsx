@@ -57,13 +57,13 @@ export default function Footer() {
                                 href="/Fire_Door"
                                 className="text-gray-300 hover:text-white transition-colors"
                             >
-                                {t("Villa Doors")}
+                                {t("Fire Door")}
                             </Link>
                             <Link
                                 href="/Villa_Doors"
                                 className="text-gray-300 hover:text-white transition-colors"
                             >
-                                {t("Fire Door")}
+                                {t("Villa Doors")}
                             </Link>
                             <Link
                                 href="/Steel_Door"
