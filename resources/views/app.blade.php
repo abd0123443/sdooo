@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>{{ config('app.name', 'Medine Steel Doors') }}</title>
+        <title inertia>{{  'Medine Steel Doors' }}</title>
         <meta name="description" content="{{ env('APP_DESCRIPTION', 'Medine Steel Doors offers premium door installation services, combining security, style, and durability. Specializing in steel doors, we provide high-quality solutions for homes and businesses.') }}">
         <link rel="icon" type="image/png" href="{{ asset('icon.jpeg') }}">
         <!-- Fonts -->
