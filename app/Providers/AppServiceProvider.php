@@ -28,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
             Inertia::share([
         'app_url' => config('app.url'),
          ]);
+        View::share('appDescription', env('APP_DESCRIPTION', 'Premium quality steel and iron security doors'));
     }
 }
