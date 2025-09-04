@@ -8,10 +8,10 @@ import { ThemeProvider } from './Contexts/ThemeContext';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Medina Steel Doors';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => title,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.jsx`,
