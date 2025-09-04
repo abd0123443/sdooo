@@ -29,27 +29,27 @@ const Steel_Door = () => {
             <Header />
             <Head>
                 <title key="title">
-                    {t("Medine Steel Doors - Our Portfolio of Steel Door Installations")}
+                    {t("Medine Steel Doors - Steel Doors")}
                 </title>
                 <meta
                     key="desc"
                     name="description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Explore our premium selection of steel doors, known for their strength, security, and modern design. Medine Steel Doors provides top-tier steel door solutions."
                     )}
                 />
                 <meta
                     key="ogtitle"
                     property="og:title"
                     content={t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
+                        "Medine Steel Doors - Steel Doors"
                     )}
                 />
                 <meta
                     key="ogdesc"
                     property="og:description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Explore our premium selection of steel doors, known for their strength, security, and modern design. Medine Steel Doors provides top-tier steel door solutions."
                     )}
                 />
                 <meta key="ogimage" property="og:image" content={`${app_url}/icon.jpeg`} />
@@ -58,7 +58,7 @@ const Steel_Door = () => {
                     key="keywords"
                     name="keywords"
                     content={t(
-                        "steel door portfolio, door installation projects, completed door works, security door gallery, modern door designs, Medine Steel Doors projects"
+                        "steel doors, security doors, metal doors, modern steel doors, residential steel doors, Medine Steel Doors"
                     )}
                 />
             </Head>

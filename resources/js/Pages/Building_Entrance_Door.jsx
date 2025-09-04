@@ -29,27 +29,27 @@ const Building_Entrance_Door = () => {
             <Header />
             <Head>
                 <title key="title">
-                    {t("Medine Steel Doors - Our Portfolio of Steel Door Installations")}
+                    {t("Medine Steel Doors - Building Entrance Doors")}
                 </title>
                 <meta
                     key="desc"
                     name="description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Discover our range of high-quality building entrance doors. Medine Steel Doors offers secure, durable, and stylish entrance solutions for residential and commercial buildings."
                     )}
                 />
                 <meta
                     key="ogtitle"
                     property="og:title"
                     content={t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
+                        "Medine Steel Doors - Building Entrance Doors"
                     )}
                 />
                 <meta
                     key="ogdesc"
                     property="og:description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Discover our range of high-quality building entrance doors. Medine Steel Doors offers secure, durable, and stylish entrance solutions for residential and commercial buildings."
                     )}
                 />
                 <meta key="ogimage" property="og:image" content={`${app_url}/icon.jpeg`} />
@@ -58,7 +58,7 @@ const Building_Entrance_Door = () => {
                     key="keywords"
                     name="keywords"
                     content={t(
-                        "steel door portfolio, door installation projects, completed door works, security door gallery, modern door designs, Medine Steel Doors projects"
+                        "building entrance doors, commercial steel doors, residential entrance doors, secure entry doors, Medine Steel Doors"
                     )}
                 />
             </Head>

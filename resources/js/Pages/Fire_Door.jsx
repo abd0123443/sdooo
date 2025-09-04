@@ -29,27 +29,27 @@ const Fire_Door = () => {
             <Header />
             <Head>
                 <title key="title">
-                    {t("Medine Steel Doors - Our Portfolio of Steel Door Installations")}
+                    {t("Medine Steel Doors - Fire Doors")}
                 </title>
                 <meta
                     key="desc"
                     name="description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Protect your property with certified fire-rated doors from Medine Steel Doors. We offer a range of fire doors that meet safety standards without compromising on design."
                     )}
                 />
                 <meta
                     key="ogtitle"
                     property="og:title"
                     content={t(
-                        "Medine Steel Doors - Our Portfolio of Steel Door Installations"
+                        "Medine Steel Doors - Fire Doors"
                     )}
                 />
                 <meta
                     key="ogdesc"
                     property="og:description"
                     content={t(
-                        "Explore the extensive portfolio of Medine Steel Doors, showcasing our high-quality steel door installations for various projects. View our completed works and find inspiration for your next door."
+                        "Protect your property with certified fire-rated doors from Medine Steel Doors. We offer a range of fire doors that meet safety standards without compromising on design."
                     )}
                 />
                 <meta key="ogimage" property="og:image" content={`${app_url}/icon.jpeg`} />
@@ -58,7 +58,7 @@ const Fire_Door = () => {
                     key="keywords"
                     name="keywords"
                     content={t(
-                        "steel door portfolio, door installation projects, completed door works, security door gallery, modern door designs, Medine Steel Doors projects"
+                        "fire doors, fire-rated doors, safety doors, commercial fire doors, residential fire doors, Medine Steel Doors"
                     )}
                 />
             </Head>
