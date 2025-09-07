@@ -110,7 +110,7 @@ const Villa_Doors = () => {
                     <div className="relative" onClick={(e) => e.stopPropagation()}>
                         <button
                             onClick={() => setModalImage(null)}
-                            className="absolute top-2 right-2 text-white text-4xl md:text-5xl lg:text-6xl font-bold z-50"
+                            className="absolute top-2 right-2 text-red-500 hover:text-red-600 transition duration-300 ease-in-out text-4xl md:text-5xl lg:text-6xl font-bold z-50"
                         >
                             &times;
                         </button>

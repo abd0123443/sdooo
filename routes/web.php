@@ -14,7 +14,11 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
+if (strpos(request()->getHttpHost(), 'www.') === 0) {
+    $newUrl = str_replace('www.', '', request()->getFullUrl());
+    header("Location: {$newUrl}", true, 301);
+    exit;
+}
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

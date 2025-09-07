@@ -111,7 +111,7 @@ const Building_Entrance_Door = () => {
                         {/* زر الإغلاق */}
                         <button
                             onClick={() => setModalImage(null)}
-                            className="absolute top-4 right-4 text-white text-4xl md:text-5xl lg:text-6xl font-bold z-50
+                            className="absolute top-4 right-4 text-red-500 hover:text-red-600  duration-300 ease-in-out text-4xl md:text-5xl lg:text-6xl font-bold z-50
                                        bg-black bg-opacity-30 rounded-full w-12 h-12 flex items-center justify-center
                                        hover:bg-opacity-60 transition"
                         >
