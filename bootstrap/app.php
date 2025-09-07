@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'admin' => IsAdmin::class,
+            'cors' => \App\Http\Middleware\CorsMiddleware::class,
         ]);
 
     $middleware->api(append: [
