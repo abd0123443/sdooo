@@ -19,6 +19,11 @@ if (strpos(request()->getHttpHost(), 'www.') === 0) {
     header("Location: {$newUrl}", true, 301);
     exit;
 }
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'www.') === 0) {
+    $newUrl = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+    header("Location: https://{$newUrl}{$_SERVER['REQUEST_URI']}", true, 301);
+    exit;
+}
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
